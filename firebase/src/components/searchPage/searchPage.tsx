@@ -51,7 +51,7 @@ export function SearchPage() {
     return (
         <Grid container spacing={5} direction="column" alignItems="center">
             <Grid item xs={12} md={6}>
-                <Typography variant="h2" gutterBottom>Mikor oltanak?</Typography>
+                <Typography variant="h2" align="center" gutterBottom>Mikor oltanak?</Typography>
             </Grid>
             <Grid item xs={12} md={6}>
                 <Typography variant="body1" paragraph>
@@ -148,7 +148,7 @@ export function SearchPage() {
                 </Typography>
             </Grid>
             <Grid item xs={12} md={6} container direction="column" alignItems="stretch">
-                <Typography variant="h5">Az oldalon az alábbi háziorvosok/rendelők regisztráltak</Typography>
+                <Typography variant="h5" align="center">Az oldalon az alábbi háziorvosok/rendelők regisztráltak</Typography>
                 <SurgeryList />
             </Grid>
         </Grid>

@@ -19,7 +19,7 @@ export function SurgeryPageLoggedIn({ surgeryId }: { surgeryId: string }) {
     return (
         <Grid container spacing={5} direction="column" alignItems="center">
             <Grid item xs={12} md={6}>
-                <Typography variant="h2" gutterBottom>Háziorvosoknak/rendelőknek</Typography>
+                <Typography variant="h2" align="center" gutterBottom>Háziorvosoknak/rendelőknek</Typography>
             </Grid>
             <SurgeryPagePublicInfo surgeryId={surgeryId} />
             {surgeryPrivate && <SurgeryPagePrivateInfo surgeryId={surgeryId} surgeryPrivate={surgeryPrivate} />}
