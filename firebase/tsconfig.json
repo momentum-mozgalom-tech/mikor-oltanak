@@ -1,0 +1,40 @@
+{
+  "compilerOptions": {
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "jsx": "react",
+    "lib": [
+      "dom",
+      "es5"
+    ],
+    "module": "esnext",
+    "moduleResolution": "node",
+    "noEmitHelpers": false,
+    "noImplicitAny": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "outDir": "build/tmp",
+    "removeComments": true,
+    "resolveJsonModule": true,
+    "sourceMap": true,
+    "strict": true,
+    "strictNullChecks": true,
+    "skipLibCheck": true,
+    "target": "ES5",
+    "allowJs": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
+    "isolatedModules": true,
+    "noEmit": true
+  },
+  "exclude": [
+    "build",
+    "functions",
+    "node_modules",
+    "test"
+  ],
+  "include": [
+    "src"
+  ]
+}

@@ -1,0 +1,12 @@
+{
+    "git.ignoreLimitWarning": true,
+    "eslint.workingDirectories": [
+        "./firebase",
+        "./packages/api",
+        "./packages/firebase-functions",
+    ],
+    "editor.codeActionsOnSave": {
+        "source.fixAll": true
+    },
+    "npm.packageManager": "pnpm"
+}

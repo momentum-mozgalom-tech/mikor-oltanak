@@ -1,0 +1,36 @@
+{
+  "private": true,
+  "name": "functions",
+  "author": "Mikor oltanak?",
+  "version": "0.0.0",
+  "scripts": {
+    "preinstall": "npx only-allow pnpm",
+    "lint": "eslint src --ext .js,.jsx,.ts,.tsx",
+    "lint-fix": "pnpm lint --fix",
+    "build": "tsc",
+    "bundle": "webpack --config webpack.config.js",
+    "deploy": "./scripts/deploy.sh"
+  },
+  "engines": {
+    "node": "^10 || ^12"
+  },
+  "main": "lib/index.js",
+  "dependencies": {
+    "@mikoroltanak/api": "workspace:^0.0.0",
+    "firebase-admin": "^8.13.0",
+    "firebase-functions": "^3.13.0"
+  },
+  "devDependencies": {
+    "@zeit/webpack-asset-relocator-loader": "^0.8.0",
+    "copy-webpack-plugin": "^4.6.0",
+    "firebase-functions-test": "^0.1.7",
+    "source-map-loader": "^0.2.4",
+    "ts-loader": "^7.0.5",
+    "typescript": "^3.9.7",
+    "webpack": "^4.44.2",
+    "webpack-build-notifier": "^0.1.32",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0",
+    "webpack-node-externals": "^1.7.2"
+  }
+}

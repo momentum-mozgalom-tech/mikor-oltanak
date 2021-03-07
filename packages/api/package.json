@@ -1,0 +1,28 @@
+{
+    "private": true,
+    "name": "@mikoroltanak/api",
+    "description": "API package",
+    "version": "0.0.0",
+    "main": "./dist/index.js",
+    "types": "./dist/index.d.ts",
+    "author": "Mikor oltanak?",
+    "scripts": {
+        "build": "npm-run-all -s clean createBuildDir compile",
+        "clean": "rimraf dist",
+        "compile": "tsc -p .",
+        "createBuildDir": "mkdirp dist",
+        "lint": "eslint src --ext .js,.jsx,.ts,.tsx",
+        "lint-fix": "pnpm lint --fix",
+        "watch": "pnpm build && tsc -w -p ."
+    },
+    "dependencies": {
+        "tslib": "^1.14.1"
+    },
+    "devDependencies": {
+        "mkdirp": "^0.5.5",
+        "npm-run-all": "^3.1.2",
+        "prettier": "^1.19.1",
+        "rimraf": "^2.7.1",
+        "typescript": "^3.9.7"
+    }
+}

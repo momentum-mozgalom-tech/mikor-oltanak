@@ -1,0 +1,5 @@
+packages:
+  - 'firebase'
+  - 'packages/**'
+  - '!packages/firebase-functions/assets'
+  - '!packages/firebase-functions/bundle'
