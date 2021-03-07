@@ -63,13 +63,13 @@ export function SearchPage() {
                 <Typography variant="body1" paragraph>
                     <strong>Páciensként</strong>
                     {" "}
-                    megtalálhatja, hogy szerepel-e a háziorvosának/rendelőjének oltási listáján,
+                    megtalálhatja, hogy az ön születési dátuma szerepel-e a háziorvosának/rendelőjének oltási listáján,
                     ha háziorvosa/rendelője ezen a honlapon már regisztrált.
                 </Typography>
                 <Typography variant="body1" paragraph>
                     <strong>Háziorvosként/rendelőként</strong>
                     {" "}
-                    pedig feltöltheti az oltásra várók listáját,
+                    pedig feltöltheti az oltásra várók születési dátumait,
                     hogy a páciensek itt ellenőrizhessék telefonálás helyett,
                     hogy szerepelnek-e az aktuális oltási listán.
                 </Typography>
@@ -121,7 +121,14 @@ export function SearchPage() {
                     ) : (
                         <SuccessResultPaper elevation={1}>
                             <Typography variant="body1">
-                                Ön a következő háziorvos/rendelő oltási listáján szerepel:
+                                Az ön születési dátuma az alábbi háziorvos(ok)/rendelő(k) oltási listáján szerepel.
+                            </Typography>
+                            <Typography variant="body2">
+                                <strong>Figyelem!</strong>
+                                {" "}
+                                Nem biztos, hogy ön szerepel eze(ke)n az oltási listá(ko)n!
+                                Lehetséges, hogy más szerepel a listán, ugyanezzel a születési dátummal.
+                                Tájékozódjon a háziorvosánál/rendelőjénél!
                             </Typography>
                             <SurgeryList surgeryIds={searchState.surgeryIds} />
                         </SuccessResultPaper>
