@@ -55,9 +55,12 @@ export function SurgeryPagePrivateInfo({ surgeryId, surgeryPrivate }: IProps) {
         <>
             <Grid item xs={12} md={6} container direction="column" alignItems="stretch">
                 <Typography variant="h5" align="center">Új páciensek hozzáadása</Typography>
-                <Typography variant="body1">
+                <Typography variant="body1" paragraph>
                     Másolja be az alábbi szövegdobozba az új páciensek születési dátumait.
+                </Typography>
+                <Typography variant="body2" paragraph>
                     Soronként egy dátum szerepeljen!
+                    A dátumok 1990-12-31, 1990.12.31 vagy hasonló formában szerepeljenek.
                 </Typography>
             </Grid>
             <Grid item xs={12} md={6} container direction="column" alignItems="stretch">
@@ -71,6 +74,13 @@ export function SurgeryPagePrivateInfo({ surgeryId, surgeryPrivate }: IProps) {
                 />
             </Grid>
             <Grid item xs={12} md={6} container direction="column" alignItems="stretch">
+                {sanitisedBirthdatesToAdd.length !== 0 && (
+                    <Typography variant="caption">
+                        A következő születési dátumok szerepelnek a szövegdobozban:
+                        {" "}
+                        {sanitisedBirthdatesToAdd.join(", ")}
+                    </Typography>
+                )}
                 <Button
                     disabled={numberOfBirthdatesToAdd === 0}
                     variant="contained"
