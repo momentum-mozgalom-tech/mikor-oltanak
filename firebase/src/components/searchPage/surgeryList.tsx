@@ -15,6 +15,7 @@ export function SurgeryList({ surgeryIds }: IProps) {
     const surgeries = useSelector(selectSurgeries);
     const surgeryList = Object.entries(surgeries)
         .filter(([surgeryId]) => surgeryIds === undefined || surgeryIds.indexOf(surgeryId) !== -1)
+        .filter(([, { name }]) => name.trim() !== "") // filter surgeries with no names set yet
         .sort(([, { name: nameA }], [, { name: nameB }]) => nameA.localeCompare(nameB));
 
     const renderSurgery = React.useCallback((surgeryId: string, surgery: IFirestoreSurgery, index: number) => (
