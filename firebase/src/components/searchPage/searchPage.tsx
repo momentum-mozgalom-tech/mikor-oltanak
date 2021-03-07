@@ -101,7 +101,9 @@ export function SearchPage() {
             </Grid>
             <Grid item xs={12} md={6} container direction="column" alignItems="stretch">
                 {searchState?.type === "pending" && (
-                    <CircularProgress />
+                    <CentredDiv>
+                        <CircularProgress />
+                    </CentredDiv>
                 )}
                 {searchState?.type === "failed" && (
                     <FailureResultPaper elevation={1}>
@@ -164,4 +166,8 @@ const SuccessResultPaper = styled(ResultPaper)`
 
 const FailureResultPaper = styled(ResultPaper)`
     background-color: #ffe4e0;
+`;
+
+const CentredDiv = styled.div`
+    text-align: center;
 `;
