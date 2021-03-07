@@ -24,8 +24,8 @@ export const findPatient = functions
         if (!isRequestLimitOk) {
             throw new functions.https.HttpsError("resource-exhausted", "Ma már nem futtathat le több keresést.");
         }
-        const { tajHash } = data;
-        const matchingSurgeries = await admin.firestore().collection(CollectionId.SurgeriesPrivate).where("tajHashes", "array-contains", tajHash).get();
+        const { birthdate } = data;
+        const matchingSurgeries = await admin.firestore().collection(CollectionId.SurgeriesPrivate).where("birthdates", "array-contains", birthdate).get();
         const matchingSurgeryIds = matchingSurgeries.docs.map(doc => doc.id);
         return { surgeryIds: matchingSurgeryIds };
     });
@@ -64,7 +64,7 @@ export const onUserCreate = functions
         });
         const surgeryPrivateDoc = admin.firestore().collection(CollectionId.SurgeriesPrivate).doc(surgeryId) as FirebaseFirestore.DocumentReference<IFirestoreSurgeryPrivate>;
         await surgeryPrivateDoc.set({
-            tajHashes: [],
+            birthdates: [],
         });
     });
 

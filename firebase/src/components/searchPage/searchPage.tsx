@@ -1,10 +1,11 @@
 import styled from "styled-components/macro";
 import {
-    Button, CircularProgress, Grid, Paper, TextField, Typography,
+    Button, CircularProgress, Grid, Paper, Typography,
 } from "@material-ui/core";
 import * as React from "react";
+import { KeyboardDatePicker } from "@material-ui/pickers";
 import { getGlobalServices } from "../../services/services";
-import { checkTaj, createTajHash, sanitiseTaj } from "../../utils/tajUtils";
+import { dateToString } from "../../utils/birthdateUtils";
 import { SurgeryList } from "./surgeryList";
 
 type ISearchState = {
@@ -18,25 +19,21 @@ type ISearchState = {
 };
 
 export function SearchPage() {
-    const [taj, setTaj] = React.useState<string>("");
-    const sanitisedTaj = sanitiseTaj(taj);
-    const isTajCorrect = checkTaj(sanitisedTaj);
-    const tajHelperText = taj === "" || isTajCorrect ? undefined : "A tajszámnak 9 számjegyet kell tartalmaznia";
+    const [birthdate, setBirthdate] = React.useState<Date | null>(null);
 
     const [searchState, setSearchState] = React.useState<ISearchState>();
     const isSearching = searchState?.type === "pending";
 
-    const handleTajChange = React.useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
-        setTaj(event.target.value);
-    }, [setTaj]);
-
     const handleSearchClick = React.useCallback(() => {
+        if (birthdate == null) {
+            return;
+        }
         const search = async () => {
             setSearchState({ type: "pending" });
-            const tajHash = createTajHash(taj);
+            const birthdateString = dateToString(birthdate);
             try {
                 const result = await getGlobalServices()?.functionsService.findPatient({
-                    tajHash,
+                    birthdate: birthdateString,
                 });
                 setSearchState({ type: "success", surgeryIds: result?.surgeryIds ?? [] });
             } catch (e) {
@@ -46,7 +43,7 @@ export function SearchPage() {
             }
         };
         search();
-    }, [taj, setSearchState]);
+    }, [birthdate, setSearchState]);
 
     return (
         <Grid container spacing={5} direction="column" alignItems="center">
@@ -78,18 +75,18 @@ export function SearchPage() {
                 </Typography>
             </Grid>
             <Grid item xs={12} md={6} container direction="column" alignItems="stretch">
-                <TextField
-                    label="Tajszám"
-                    variant="outlined"
-                    helperText={tajHelperText}
-                    value={taj}
-                    onChange={handleTajChange}
-                    disabled={isSearching}
+                <KeyboardDatePicker
+                    variant="inline"
+                    format="yyyy-MM-dd"
+                    margin="normal"
+                    label="Születési dátum"
+                    value={birthdate}
+                    onChange={setBirthdate}
                 />
             </Grid>
             <Grid item xs={12} md={6} container direction="column" alignItems="stretch">
                 <Button
-                    disabled={!isTajCorrect || isSearching}
+                    disabled={birthdate == null || isSearching}
                     variant="contained"
                     color="primary"
                     onClick={handleSearchClick}
@@ -139,9 +136,8 @@ export function SearchPage() {
                     ha háziorvosa/rendelője feltöltötte az aktuális oltási listáját.
                 </Typography>
                 <Typography variant="body2" paragraph>
-                    Továbbá az oldal nem tárol semmilyen személyes adatot.
-                    A keresett tajszámot sosem juttatjuk el a szerverekhez, hanem ezeknek egy kriptográfiailag
-                    hashelt, visszafejthetetlen verzióját küldjük el.
+                    Az oldal nem tárol semmilyen személyes adatot. Kizárólag születési dátumokat
+                    tartalmaz anélkül, hogy konkrét személyhez kötődne.
                 </Typography>
                 <Typography variant="body2" paragraph>
                     A rendszer védelme érdekében naponta maximum 10 keresést végezhet el.

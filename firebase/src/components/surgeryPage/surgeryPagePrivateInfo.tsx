@@ -5,8 +5,8 @@ import {
 import { IFirestoreSurgeryPrivate } from "@mikoroltanak/api";
 import * as React from "react";
 import { getGlobalServices } from "../../services/services";
-import { checkTaj, createTajHash, sanitiseTaj } from "../../utils/tajUtils";
-import { TajHashList } from "./tajHashList";
+import { sanitiseBirthdate } from "../../utils/birthdateUtils";
+import { BirthdateList } from "./birthdateList";
 
 export interface IProps {
     surgeryId: string;
@@ -17,125 +17,112 @@ function isDefined<T>(value: T | undefined | null): value is T {
     return value != null;
 }
 
-function parseTextIntoTajs(value: string) {
-    return value.split("\n").map((row) => {
-        const sanitisedTaj = sanitiseTaj(row);
-        const isTajCorrect = checkTaj(sanitisedTaj);
-        return isTajCorrect ? sanitisedTaj : undefined;
-    }).filter(isDefined);
+function parseTextIntoBirthdates(value: string) {
+    return value.split("\n").map(sanitiseBirthdate).filter(isDefined);
 }
 
 export function SurgeryPagePrivateInfo({ surgeryId, surgeryPrivate }: IProps) {
-    const [tajsToAdd, setTajsToAdd] = React.useState<string>("");
-    const [tajsToRemove, setTajsToRemove] = React.useState<string>("");
-    const sanitisedTajsToAdd = parseTextIntoTajs(tajsToAdd);
-    const sanitisedTajsToRemove = parseTextIntoTajs(tajsToRemove);
-    const numberOfTajsToAdd = sanitisedTajsToAdd.length;
-    const numberOfTajsToRemove = sanitisedTajsToRemove.length;
+    const [birthdatesToAdd, setBirthdatesToAdd] = React.useState<string>("");
+    const [birthdatesToRemove, setBirthdatesToRemove] = React.useState<string>("");
+    const sanitisedBirthdatesToAdd = parseTextIntoBirthdates(birthdatesToAdd);
+    const sanitisedBirthdatesToRemove = parseTextIntoBirthdates(birthdatesToRemove);
+    const numberOfBirthdatesToAdd = sanitisedBirthdatesToAdd.length;
+    const numberOfBirthdatesToRemove = sanitisedBirthdatesToRemove.length;
 
-    const handleTajsToAddChange = React.useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
-        setTajsToAdd(event.target.value);
-    }, [setTajsToAdd]);
+    const handleBirthdatesToAddChange = React.useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
+        setBirthdatesToAdd(event.target.value);
+    }, [setBirthdatesToAdd]);
 
-    const handleTajsToRemoveChange = React.useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
-        setTajsToRemove(event.target.value);
-    }, [setTajsToRemove]);
+    const handleBirthdatesToRemoveChange = React.useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
+        setBirthdatesToRemove(event.target.value);
+    }, [setBirthdatesToRemove]);
 
     const handleAddClick = React.useCallback(() => {
-        const tajHashesToAdd = sanitisedTajsToAdd.map(createTajHash);
-        getGlobalServices()?.dataService.addTajHashes({
+        getGlobalServices()?.dataService.addBirthdates({
             surgeryId,
-            tajHashes: tajHashesToAdd,
+            birthdates: sanitisedBirthdatesToAdd,
         });
-    }, [surgeryId, sanitisedTajsToAdd]);
+    }, [surgeryId, sanitisedBirthdatesToAdd]);
 
     const handleRemoveClick = React.useCallback(() => {
-        const tajHashesToRemove = sanitisedTajsToRemove.map(createTajHash);
-        getGlobalServices()?.dataService.removeTajHashes({
+        getGlobalServices()?.dataService.removeBirthdates({
             surgeryId,
-            tajHashes: tajHashesToRemove,
+            birthdates: sanitisedBirthdatesToRemove,
         });
-    }, [surgeryId, sanitisedTajsToRemove]);
+    }, [surgeryId, sanitisedBirthdatesToRemove]);
 
     return (
         <>
             <Grid item xs={12} md={6} container direction="column" alignItems="stretch">
                 <Typography variant="h5" align="center">Új páciensek hozzáadása</Typography>
                 <Typography variant="body1">
-                    Másolja be az alábbi szövegdobozba az új páciensek tajszámait.
-                    Soronként egy tajszám szerepeljen!
-                </Typography>
-                <Typography variant="body1">
-                    <strong>
-                        Az eszköz csak saját felelősségre használható!
-                    </strong>
+                    Másolja be az alábbi szövegdobozba az új páciensek születési dátumait.
+                    Soronként egy dátum szerepeljen!
                 </Typography>
             </Grid>
             <Grid item xs={12} md={6} container direction="column" alignItems="stretch">
                 <TextField
-                    label="Új páciensek tajszámai"
+                    label="Új páciensek születési dátumai"
                     variant="outlined"
                     multiline
                     rows={8}
-                    value={tajsToAdd}
-                    onChange={handleTajsToAddChange}
+                    value={birthdatesToAdd}
+                    onChange={handleBirthdatesToAddChange}
                 />
             </Grid>
             <Grid item xs={12} md={6} container direction="column" alignItems="stretch">
                 <Button
-                    disabled={numberOfTajsToAdd === 0}
+                    disabled={numberOfBirthdatesToAdd === 0}
                     variant="contained"
                     color="primary"
                     onClick={handleAddClick}
                     fullWidth
                     size="large"
                 >
-                    {numberOfTajsToAdd}
+                    {numberOfBirthdatesToAdd}
                     {" "}
-                    tajszám hozzáadása
+                    születési dátum hozzáadása
                 </Button>
             </Grid>
 
             <Grid item xs={12} md={6} container direction="column" alignItems="stretch">
                 <Typography variant="h5" align="center">Régi páciensek törlése</Typography>
                 <Typography variant="body1">
-                    Másolja be az alábbi szövegdobozba a törlendő páciensek tajszámait.
-                    Soronként egy tajszám szerepeljen!
+                    Másolja be az alábbi szövegdobozba a törlendő páciensek születési dátumait.
+                    Soronként egy dátum szerepeljen!
                 </Typography>
             </Grid>
             <Grid item xs={12} md={6} container direction="column" alignItems="stretch">
                 <TextField
-                    label="Törlendő páciensek tajszámai"
+                    label="Törlendő páciensek születési dátumai"
                     variant="outlined"
                     multiline
                     rows={3}
-                    value={tajsToRemove}
-                    onChange={handleTajsToRemoveChange}
+                    value={birthdatesToRemove}
+                    onChange={handleBirthdatesToRemoveChange}
                 />
             </Grid>
             <Grid item xs={12} md={6} container direction="column" alignItems="stretch">
                 <Button
-                    disabled={numberOfTajsToRemove === 0}
+                    disabled={numberOfBirthdatesToRemove === 0}
                     variant="contained"
                     color="primary"
                     onClick={handleRemoveClick}
                     fullWidth
                     size="large"
                 >
-                    {numberOfTajsToRemove}
+                    {numberOfBirthdatesToRemove}
                     {" "}
-                    tajszám törlése
+                    születési dátum törlése
                 </Button>
             </Grid>
 
             <Grid item xs={12} md={6} container direction="column" alignItems="stretch">
                 <Typography variant="h5" align="center">Lista</Typography>
                 <Typography variant="body2" paragraph>
-                    Megjegyzés: az alábbi listán nem a tajszámok láthatóak, mert azokat
-                    adatvédelmi okokból mi nem tárolhatjuk. Ehelyett tajszámokból származtatott
-                    visszafejthetetlen kódokat használunk.
+                    Jelenleg az alábbi születési dátumok szerepelnek az ön listáján.
                 </Typography>
-                <TajHashList surgeryPrivate={surgeryPrivate} />
+                <BirthdateList surgeryPrivate={surgeryPrivate} />
             </Grid>
         </>
     );
