@@ -18,14 +18,14 @@ export function SurgeryList({ surgeryIds }: IProps) {
         .filter(([, { name }]) => name.trim() !== "") // filter surgeries with no names set yet
         .sort(([, { name: nameA }], [, { name: nameB }]) => nameA.localeCompare(nameB));
 
-    const renderSurgery = React.useCallback((surgeryId: string, surgery: IFirestoreSurgery, index: number) => (
-        <>
-            {index !== 0 && <Divider key={`divider-${surgeryId}`} variant="fullWidth" />}
+    const renderSurgery = React.useCallback((surgeryId: string, surgery: IFirestoreSurgery, index: number) => [
+        index !== 0 ? <Divider key={`divider-${surgeryId}`} variant="fullWidth" /> : null,
+        (
             <ListItem key={`surgery-${surgeryId}`}>
                 <ListItemText primary={surgery.name} secondary={surgery.description} />
             </ListItem>
-        </>
-    ), []);
+        ),
+    ], []);
 
     if (surgeryList.length === 0) {
         return <CircularProgress />;
