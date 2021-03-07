@@ -1,5 +1,6 @@
 import * as React from "react";
 import DocumentTitle from "react-document-title";
+import styled from "styled-components/macro";
 import { AppHeader } from "./appHeader";
 
 interface IProps {
@@ -12,8 +13,14 @@ export function PageFrame({ title, children }: IProps) {
         <DocumentTitle title={title}>
             <>
                 <AppHeader />
-                {children}
+                <PageContent>
+                    {children}
+                </PageContent>
             </>
         </DocumentTitle>
     );
 }
+
+const PageContent = styled.div`
+    padding: 2rem 1rem 1rem 1rem;
+`;
