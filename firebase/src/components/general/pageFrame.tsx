@@ -22,5 +22,5 @@ export function PageFrame({ title, children }: IProps) {
 }
 
 const PageContent = styled.div`
-    padding: 2rem 1rem 1rem 1rem;
+    padding: 2rem;
 `;
