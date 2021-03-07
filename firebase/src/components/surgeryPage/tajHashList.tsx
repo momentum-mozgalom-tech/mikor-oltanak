@@ -8,12 +8,14 @@ export function TajHashList({ surgeryPrivate }: { surgeryPrivate: IFirestoreSurg
     const { tajHashes } = surgeryPrivate;
 
     const renderTajHash = React.useCallback((tajHash: string) => (
-        <>
-            <ListItem key={tajHash}>
-                <ListItemText primary={tajHash} />
-            </ListItem>
-            <Divider variant="fullWidth" />
-        </>
+        [
+            (
+                <ListItem key={`tajhash-${tajHash}`}>
+                    <ListItemText primary={tajHash} />
+                </ListItem>
+            ),
+            <Divider variant="fullWidth" key={`divider-${tajHash}`} />,
+        ]
     ), []);
 
     if (tajHashes.length === 0) {
