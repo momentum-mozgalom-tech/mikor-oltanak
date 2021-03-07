@@ -29,13 +29,13 @@ export function MainApp() {
     const renderHomeRoute = () => <Redirect to={NavUtils.getNavUrl[Page.Kereses]()} />;
 
     const renderSearchRoute = () => (
-        <PageFrame title={NavUtils.getNavUrlSimpleTitle[Page.Kereses]} isAuthRequired={false}>
+        <PageFrame title={NavUtils.getNavUrlSimpleTitle[Page.Kereses]}>
             <SearchPage />
         </PageFrame>
     );
 
     const renderSurgeryRoute = () => (
-        <PageFrame title={NavUtils.getNavUrlSimpleTitle[Page.Rendelo]} isAuthRequired={false}>
+        <PageFrame title={NavUtils.getNavUrlSimpleTitle[Page.Rendelo]}>
             <SurgeryPage />
         </PageFrame>
     );
@@ -46,7 +46,7 @@ export function MainApp() {
         }
         const { redirectUrl } = NavUtils.getNavUrlQueryParams[Page.Bejelentkezes](location.search);
         return (
-            <PageFrame title={NavUtils.getNavUrlSimpleTitle[Page.Bejelentkezes]} isAuthRequired={false}>
+            <PageFrame title={NavUtils.getNavUrlSimpleTitle[Page.Bejelentkezes]}>
                 <Login redirectUrl={redirectUrl} />
             </PageFrame>
         );
@@ -74,7 +74,6 @@ export function MainApp() {
                                 render={() => (
                                     <PageFrame
                                         title={NavUtils.getNavUrlSimpleTitle[Page.FelhasznalasiFeltetelek]}
-                                        isAuthRequired={false}
                                     >
                                         <StaticContent type="terms of service" />
                                     </PageFrame>
@@ -86,7 +85,6 @@ export function MainApp() {
                                 render={() => (
                                     <PageFrame
                                         title={NavUtils.getNavUrlSimpleTitle[Page.AdatvedelmiNyilatkozat]}
-                                        isAuthRequired={false}
                                     >
                                         <StaticContent type="privacy policy" />
                                     </PageFrame>
