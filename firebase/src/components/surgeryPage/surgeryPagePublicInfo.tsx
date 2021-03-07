@@ -43,17 +43,17 @@ export function SurgeryPagePublicInfo({ surgeryId }: { surgeryId: string }) {
         <>
             <Grid item xs={12} md={6} container direction="column" alignItems="stretch">
                 <TextField
-                    label="Rendelő neve"
+                    label="Háziorvos/rendelő neve"
                     variant="outlined"
                     error={isSurgeryNameInvalid}
-                    helperText={isSurgeryNameInvalid ? "A rendelő neve nem lehet üres" : undefined}
+                    helperText={isSurgeryNameInvalid ? "A háziorvos/rendelő neve nem lehet üres" : undefined}
                     value={surgeryNameDraft}
                     onChange={handleNameChange}
                 />
             </Grid>
             <Grid item xs={12} md={6} container direction="column" alignItems="stretch">
                 <TextField
-                    label="Rendelő leírása"
+                    label="Háziorvos/rendelő leírása"
                     variant="outlined"
                     multiline
                     rows={4}

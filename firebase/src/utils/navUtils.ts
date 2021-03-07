@@ -64,7 +64,7 @@ const getNavUrlSimpleTitle = {
     [Page.FelhasznalasiFeltetelek]: getPageTitle("Felhasználási feltételek"),
     [Page.AdatvedelmiNyilatkozat]: getPageTitle("Adatvédelmi nyilatkozat"),
     [Page.Kereses]: getPageTitle("Keresés"),
-    [Page.Rendelo]: getPageTitle("Rendelő"),
+    [Page.Rendelo]: getPageTitle("Háziorvosoknak/rendelőknek"),
 } as const;
 
 export const NavUtils = {

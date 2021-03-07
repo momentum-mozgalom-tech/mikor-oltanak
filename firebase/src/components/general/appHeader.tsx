@@ -66,7 +66,7 @@ export function AppHeader() {
                     </IconLink>
                     <IconLink to={NavUtils.getNavUrl[Page.Rendelo]()}>
                         <Button color="inherit" size="small">
-                            Orvosoknak
+                            Háziorvosoknak/rendelőknek
                         </Button>
                     </IconLink>
                 </AppIcons>

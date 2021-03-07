@@ -10,15 +10,15 @@ export function SurgeryPageNotLoggedIn() {
     return (
         <Grid container spacing={5} direction="column" alignItems="center">
             <Grid item xs={12} md={6}>
-                <Typography variant="h2" gutterBottom>Rendelő</Typography>
+                <Typography variant="h2" gutterBottom>Háziorvosoknak/rendelőknek</Typography>
             </Grid>
             <Grid item xs={12} md={6} direction="column" alignItems="stretch">
                 <Typography variant="body1" paragraph>
-                    Rendelők és orvosok ezen a lapon állíthatják be,
+                    Háziorvosok/rendelők ezen a lapon állíthatják be,
                     hogy mely páciensek szerepelnek az oltási listájukon.
                 </Typography>
                 <Typography variant="body1" paragraph>
-                    Ha már regisztrált, lépjen be alább.
+                    Ha már regisztrált ezen a honlapon, lépjen be alább.
                 </Typography>
             </Grid>
             <Grid item xs={12} md={6} container direction="column" alignItems="stretch">
@@ -32,7 +32,7 @@ export function SurgeryPageNotLoggedIn() {
             </Grid>
             <Grid item xs={12} md={6} direction="column" alignItems="stretch">
                 <Button color="secondary" variant="contained" href="https://docs.google.com/forms/d/e/1FAIpQLSeL0p2n5BH5xMGdPTLSlhFG1Q3uF4ewiKCUGUzV1-80FDu41A/viewform?usp=sf_link" target="_blank" rel="noreferrer">
-                    Regisztrálok rendelőként
+                    Regisztrálok háziorvosként/rendelőként
                 </Button>
             </Grid>
             <Grid item xs={12} md={6} direction="column" alignItems="stretch">

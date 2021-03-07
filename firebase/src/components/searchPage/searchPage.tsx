@@ -55,7 +55,7 @@ export function SearchPage() {
             <Grid item xs={12} md={6}>
                 <Typography variant="body1" paragraph>
                     Azt tapasztaltuk, hogy páciensként sokszor nem világos számunkra, hogy rajta
-                    vagyunk-e már a körzeti rendelőnk oltási listáján. Rendelőként pedig az amúgyis
+                    vagyunk-e már a háziorvosunk/rendelőnk oltási listáján. Orvosként pedig az amúgyis
                     emberfeletti teher mellett sokszor az aggódó, telefonon érdeklődő páciensekkel
                     kell tölteni az időt.
                 </Typography>
@@ -65,14 +65,15 @@ export function SearchPage() {
                 <Typography variant="body1" paragraph>
                     <strong>Páciensként</strong>
                     {" "}
-                    megtalálhatja, hogy szerepel-e a rendelőjének oltási listáján,
-                    ha a rendelője már regisztrált.
+                    megtalálhatja, hogy szerepel-e a háziorvosának/rendelőjének oltási listáján,
+                    ha háziorvosa/rendelője ezen a honlapon már regisztrált.
                 </Typography>
                 <Typography variant="body1" paragraph>
-                    <strong>Rendelőként</strong>
+                    <strong>Háziorvosként/rendelőként</strong>
                     {" "}
                     pedig feltöltheti az oltásra várók listáját,
-                    hogy a páciensek itt ellenőrizhessék telefonálás helyett.
+                    hogy a páciensek itt ellenőrizhessék telefonálás helyett,
+                    hogy szerepelnek-e az aktuális oltási listán.
                 </Typography>
             </Grid>
             <Grid item xs={12} md={6} container direction="column" alignItems="stretch">
@@ -116,7 +117,7 @@ export function SearchPage() {
                     ) : (
                         <SuccessResultPaper elevation={1}>
                             <Typography variant="body1">
-                                Ön a következő rendelő oltási listáján szerepel:
+                                Ön a következő háziorvos/rendelő oltási listáján szerepel:
                             </Typography>
                             <SurgeryList surgeryIds={searchState.surgeryIds} />
                         </SuccessResultPaper>
@@ -127,7 +128,8 @@ export function SearchPage() {
                 <Typography variant="body2" paragraph>
                     <strong>Fontos!</strong>
                     {" "}
-                    Ez az oldal csak akkor tud segíteni, ha a rendelője feltöltötte az oltási listájukat.
+                    Ez az oldal csak akkor tud segíteni,
+                    ha háziorvosa/rendelője feltöltötte az aktuális oltási listáját.
                 </Typography>
                 <Typography variant="body2" paragraph>
                     Továbbá az oldal nem tárol semmilyen személyes adatot.
@@ -136,7 +138,7 @@ export function SearchPage() {
                 </Typography>
             </Grid>
             <Grid item xs={12} md={6} container direction="column" alignItems="stretch">
-                <Typography variant="h5">Az oldalon az alábbi rendelők regisztráltak</Typography>
+                <Typography variant="h5">Az oldalon az alábbi háziorvosok/rendelők regisztráltak</Typography>
                 <SurgeryList />
             </Grid>
         </Grid>
