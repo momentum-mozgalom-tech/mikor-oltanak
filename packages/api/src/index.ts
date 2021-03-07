@@ -3,6 +3,9 @@ export enum CollectionId {
     Surgeries = "surgeries",
     /** Private surgery information */
     SurgeriesPrivate = "surgeries-private",
+    /** Request tracker */
+    Requests = "requests",
+    Requests_Ips = "ips",
 }
 
 export interface IFirestoreSurgery {
@@ -13,6 +16,11 @@ export interface IFirestoreSurgery {
 export interface IFirestoreSurgeryPrivate {
     /** A list of hashes of tajszám, where tajszám is a string of 9 digits, e.g. 123456789 */
     tajHashes: string[];
+}
+
+export interface IFirestoreRequestIp {
+    /** The number of requests made from a given IP on a given day */
+    numberOfSearchRequests: number;
 }
 
 export interface IFunctionsSearchRequest {

@@ -40,7 +40,8 @@ export function SearchPage() {
                 });
                 setSearchState({ type: "success", surgeryIds: result?.surgeryIds ?? [] });
             } catch (e) {
-                setSearchState({ type: "failed", error: "Nem sikerült a keresés - kérjük próbálkozzon újra!" });
+                const errorMessage = e?.message ?? "Nem sikerült a keresés - kérjük próbálkozzon újra!";
+                setSearchState({ type: "failed", error: errorMessage });
                 console.error(e);
             }
         };
@@ -103,9 +104,13 @@ export function SearchPage() {
                     <CircularProgress />
                 )}
                 {searchState?.type === "failed" && (
-                    <Typography variant="body1">
-                        {searchState.error}
-                    </Typography>
+                    <FailureResultPaper elevation={1}>
+                        <Typography variant="body1">
+                            <strong>Hiba a kereséskor!</strong>
+                            {" "}
+                            {searchState.error}
+                        </Typography>
+                    </FailureResultPaper>
                 )}
                 {searchState?.type === "success" && (
                     searchState.surgeryIds.length === 0 ? (
@@ -135,6 +140,9 @@ export function SearchPage() {
                     Továbbá az oldal nem tárol semmilyen személyes adatot.
                     A keresett tajszámot sosem juttatjuk el a szerverekhez, hanem ezeknek egy kriptográfiailag
                     hashelt, visszafejthetetlen verzióját küldjük el.
+                </Typography>
+                <Typography variant="body2" paragraph>
+                    A rendszer védelme érdekében naponta maximum 10 keresést végezhet el.
                 </Typography>
             </Grid>
             <Grid item xs={12} md={6} container direction="column" alignItems="stretch">
