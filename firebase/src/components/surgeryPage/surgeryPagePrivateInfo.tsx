@@ -59,7 +59,7 @@ export function SurgeryPagePrivateInfo({ surgeryId, surgeryPrivate }: IProps) {
 
     return (
         <>
-            <Grid item xs={12} md={6}>
+            <Grid item xs={12} md={6} container direction="column" alignItems="stretch">
                 <Typography variant="h5" align="center">Új páciensek hozzáadása</Typography>
                 <Typography variant="body1">
                     Másolja be az alábbi szövegdobozba az új páciensek tajszámait.
@@ -96,7 +96,7 @@ export function SurgeryPagePrivateInfo({ surgeryId, surgeryPrivate }: IProps) {
                 </Button>
             </Grid>
 
-            <Grid item xs={12} md={6}>
+            <Grid item xs={12} md={6} container direction="column" alignItems="stretch">
                 <Typography variant="h5" align="center">Régi páciensek törlése</Typography>
                 <Typography variant="body1">
                     Másolja be az alábbi szövegdobozba a törlendő páciensek tajszámait.
@@ -128,7 +128,7 @@ export function SurgeryPagePrivateInfo({ surgeryId, surgeryPrivate }: IProps) {
                 </Button>
             </Grid>
 
-            <Grid item xs={12} md={6}>
+            <Grid item xs={12} md={6} container direction="column" alignItems="stretch">
                 <Typography variant="h5" align="center">Lista</Typography>
                 <Typography variant="body2" paragraph>
                     Megjegyzés: az alábbi listán nem a tajszámok láthatóak, mert azokat
