@@ -1,5 +1,7 @@
 import {
     Button,
+    Checkbox,
+    FormControlLabel,
     Grid, TextField, Typography,
 } from "@material-ui/core";
 import { IFirestoreSurgeryPrivate } from "@mikoroltanak/api";
@@ -23,19 +25,17 @@ function parseTextIntoBirthdates(value: string) {
 
 export function SurgeryPagePrivateInfo({ surgeryId, surgeryPrivate }: IProps) {
     const [birthdatesToAdd, setBirthdatesToAdd] = React.useState<string>("");
-    const [birthdatesToRemove, setBirthdatesToRemove] = React.useState<string>("");
+    const [isRemoveConfirmed, setIsRemoveConfirmed] = React.useState<boolean>(false);
     const sanitisedBirthdatesToAdd = parseTextIntoBirthdates(birthdatesToAdd);
-    const sanitisedBirthdatesToRemove = parseTextIntoBirthdates(birthdatesToRemove);
     const numberOfBirthdatesToAdd = sanitisedBirthdatesToAdd.length;
-    const numberOfBirthdatesToRemove = sanitisedBirthdatesToRemove.length;
 
     const handleBirthdatesToAddChange = React.useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
         setBirthdatesToAdd(event.target.value);
     }, [setBirthdatesToAdd]);
 
-    const handleBirthdatesToRemoveChange = React.useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
-        setBirthdatesToRemove(event.target.value);
-    }, [setBirthdatesToRemove]);
+    const handleIsRemoveConfirmedChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setIsRemoveConfirmed(event.target.checked);
+    };
 
     const handleAddClick = React.useCallback(() => {
         getGlobalServices()?.dataService.addBirthdates({
@@ -44,12 +44,12 @@ export function SurgeryPagePrivateInfo({ surgeryId, surgeryPrivate }: IProps) {
         });
     }, [surgeryId, sanitisedBirthdatesToAdd]);
 
-    const handleRemoveClick = React.useCallback(() => {
-        getGlobalServices()?.dataService.removeBirthdates({
+    const handleRemoveAllClick = React.useCallback(() => {
+        setIsRemoveConfirmed(false);
+        getGlobalServices()?.dataService.removeAllBirthdates({
             surgeryId,
-            birthdates: sanitisedBirthdatesToRemove,
         });
-    }, [surgeryId, sanitisedBirthdatesToRemove]);
+    }, [surgeryId]);
 
     return (
         <>
@@ -86,34 +86,28 @@ export function SurgeryPagePrivateInfo({ surgeryId, surgeryPrivate }: IProps) {
             </Grid>
 
             <Grid item xs={12} md={6} container direction="column" alignItems="stretch">
-                <Typography variant="h5" align="center">Régi páciensek törlése</Typography>
+                <Typography variant="h5" align="center">Az összes páciens törlése</Typography>
                 <Typography variant="body1">
-                    Másolja be az alábbi szövegdobozba a törlendő páciensek születési dátumait.
-                    Soronként egy dátum szerepeljen!
+                    Az alábbi gombra kattintva törölheti az eddig felvitt születési dátumok
+                    teljes listáját.
                 </Typography>
             </Grid>
             <Grid item xs={12} md={6} container direction="column" alignItems="stretch">
-                <TextField
-                    label="Törlendő páciensek születési dátumai"
-                    variant="outlined"
-                    multiline
-                    rows={3}
-                    value={birthdatesToRemove}
-                    onChange={handleBirthdatesToRemoveChange}
+                <FormControlLabel
+                    control={<Checkbox checked={isRemoveConfirmed} onChange={handleIsRemoveConfirmedChange} />}
+                    label="Biztos, hogy törli az összes eddigi születési dátumot?"
                 />
             </Grid>
             <Grid item xs={12} md={6} container direction="column" alignItems="stretch">
                 <Button
-                    disabled={numberOfBirthdatesToRemove === 0}
+                    disabled={!isRemoveConfirmed}
                     variant="contained"
                     color="primary"
-                    onClick={handleRemoveClick}
+                    onClick={handleRemoveAllClick}
                     fullWidth
                     size="large"
                 >
-                    {numberOfBirthdatesToRemove}
-                    {" "}
-                    születési dátum törlése
+                    Az összes születési dátum törlése
                 </Button>
             </Grid>
 
