@@ -31,7 +31,7 @@ export function SurgeryPageNotLoggedIn() {
                 </Typography>
             </Grid>
             <Grid item xs={12} md={6} direction="column" alignItems="stretch">
-                <Button color="secondary" variant="contained" href="https://docs.google.com/forms/d/e/1FAIpQLSeL0p2n5BH5xMGdPTLSlhFG1Q3uF4ewiKCUGUzV1-80FDu41A/viewform?usp=sf_link" target="_blank" rel="noreferrer">
+                <Button color="primary" variant="contained" href="https://docs.google.com/forms/d/e/1FAIpQLSeL0p2n5BH5xMGdPTLSlhFG1Q3uF4ewiKCUGUzV1-80FDu41A/viewform?usp=sf_link" target="_blank" rel="noreferrer">
                     Regisztrálok háziorvosként/rendelőként
                 </Button>
             </Grid>
