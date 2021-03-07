@@ -2,6 +2,7 @@ import { useDispatch } from "react-redux";
 import {
     CollectionId, IFirestoreSurgery,
 } from "@mikoroltanak/api";
+import { useCallback } from "react";
 import {
     SetSurgeries,
 } from "../../store/actions";
@@ -12,9 +13,9 @@ export function DataLoaders() {
 
     useFirestoreSubscription<IFirestoreSurgery>(
         CollectionId.Surgeries,
-        (documents) => {
+        useCallback((documents) => {
             dispatch(SetSurgeries.create({ surgeries: documents }));
-        },
+        }, [dispatch]),
     );
 
     return null;

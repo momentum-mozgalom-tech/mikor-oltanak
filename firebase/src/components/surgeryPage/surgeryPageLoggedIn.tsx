@@ -11,9 +11,7 @@ export function SurgeryPageLoggedIn({ surgeryId }: { surgeryId: string }) {
     const [surgeryPrivate, setSurgeryPrivate] = React.useState<IFirestoreSurgeryPrivate>();
     useFirestoreDocSubscription<IFirestoreSurgeryPrivate>(
         `${CollectionId.SurgeriesPrivate}/${surgeryId}`,
-        (document) => {
-            setSurgeryPrivate(document);
-        },
+        setSurgeryPrivate,
     );
 
     return (

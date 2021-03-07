@@ -113,9 +113,9 @@ export function useFirestoreDocSubscription<API>(
     useEffect(() => {
         snapshotUnsubscribers[docPath] = subscribeToDoc<API>(
             docPath,
-            (documents, hasPendingWrites) => {
+            (document, hasPendingWrites) => {
                 setPendingWrite(docPath, hasPendingWrites);
-                onResult(documents);
+                onResult(document);
             },
         );
         return () => {
