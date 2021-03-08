@@ -46,7 +46,7 @@ export function SurgeryPagePublicInfo({ surgeryId }: { surgeryId: string }) {
                     label="Háziorvos/rendelő neve"
                     variant="outlined"
                     error={isSurgeryNameInvalid}
-                    helperText={isSurgeryNameInvalid ? "A háziorvos/rendelő neve nem lehet üres" : undefined}
+                    helperText={isSurgeryNameInvalid ? "A háziorvos/rendelő neve nem lehet üres" : "Itt megadhatja a háziorvos vagy a rendelő nevét, városát"}
                     value={surgeryNameDraft}
                     onChange={handleNameChange}
                 />
@@ -57,6 +57,7 @@ export function SurgeryPagePublicInfo({ surgeryId }: { surgeryId: string }) {
                     variant="outlined"
                     multiline
                     rows={4}
+                    helperText="Itt megadhatja pl. a betegek által hívható telefonszámot vagy egyéb információt."
                     value={surgeryDescriptionDraft}
                     onChange={handleDescriptionChange}
                 />
