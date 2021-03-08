@@ -24,9 +24,6 @@ Repository setup:
 ### Web App
 
 1. Make sure that the project dependencies are installed and that the development environment is set up (see instructions above).
-1. Run `pnpm build:app` to build the app dependencies.
-1. Change into the `firebase` directory and run `pnpm dev` to run the development server locally.
-    - Local server should open an instance of the app in your default browser.
-    - The app should say that it is a test environment.
-    - You should be able to log in.
+1. Run `pnpm build` to build all packages.
+1. Change into the `firebase` directory and run `pnpm dev` to run the development server locally. The local server should open an instance of the app in your default browser.
 1. Try modifying something in the code and saving the changes. The app should update its components without having to refresh the page.
