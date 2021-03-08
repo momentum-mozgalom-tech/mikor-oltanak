@@ -42,7 +42,7 @@ export function InfoPage() {
                 <Typography variant="body1" paragraph>
                     Sajnos nem. Egy profi kormány esetében nem lenne szükség egy
                     ilyen lakossági kezdeményezésre, hiszen az elmúlt egy év és az állami
-                    milliárdok elegendő felkészülési lehetőséget adtak a felkészülésre.
+                    milliárdok elegendő lehetőséget adtak a felkészülésre.
                     Ennek hiányában azonban úgy kell segítenünk, ahogy tudunk. Az önkéntesekből
                     álló csapatunk egy hétvége alatt, mindössze 3000 forintból készítette el
                     a weboldalt.
