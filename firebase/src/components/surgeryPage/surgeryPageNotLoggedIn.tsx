@@ -16,7 +16,7 @@ export function SurgeryPageNotLoggedIn() {
             <Grid item xs={12} md={6} container direction="column" alignItems="stretch">
                 <Typography variant="body1" paragraph>
                     Háziorvosok/rendelők ezen a lapon állíthatják be,
-                    hogy mely páciensek szerepelnek az oltási listájukon.
+                    hogy mely születési dátumok szerepelnek az oltási listájukon.
                 </Typography>
                 <Typography variant="body1" paragraph>
                     Ha már regisztrált ezen a honlapon, lépjen be alább.
@@ -38,7 +38,16 @@ export function SurgeryPageNotLoggedIn() {
             </Grid>
             <Grid item xs={12} md={6} container direction="column" alignItems="stretch">
                 <Typography variant="body1" paragraph>
-                    Kérdéseit küldje az info@mikoroltanak.eu címre.
+                    Adatvédelmi szempontból a rendszer jogilag megfelelő és biztonságos.
+                    A páciensek semmilyen személyes adatát nem tároljuk, kizárólag a születési
+                    dátumokat. Habár a születési dátumok nem rendelhetőek egyértelműen páciensekhez,
+                    sok esetben így is megspórolhat néhány felesleges telefonhívást a rendszer
+                    használata.
+                </Typography>
+            </Grid>
+            <Grid item xs={12} md={6} container direction="column" alignItems="stretch">
+                <Typography variant="body1" paragraph>
+                    Kérdéseit küldje az info@mikoroltanak.eu címre!
                 </Typography>
             </Grid>
         </Grid>
