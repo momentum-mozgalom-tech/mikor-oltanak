@@ -69,6 +69,11 @@ export function AppHeader() {
                             Háziorvosoknak / rendelőknek
                         </Button>
                     </IconLink>
+                    <IconLink to={NavUtils.getNavUrl[Page.Info]()}>
+                        <Button color="inherit" size="small">
+                            Gyakori kérdések
+                        </Button>
+                    </IconLink>
                 </AppIcons>
 
                 {isLoggedIn ? (

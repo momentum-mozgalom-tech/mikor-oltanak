@@ -9,6 +9,7 @@ export enum Page {
     AdatvedelmiNyilatkozat = "adatvedelmi-nyilatkozat",
     Kereses = "kereses",
     Rendelo = "rendelo",
+    Info = "info",
 }
 
 interface ISignInRouteQueryParams {
@@ -22,6 +23,7 @@ const getNavUrl = {
     [Page.AdatvedelmiNyilatkozat]: () => "/adatvedelmi-nyilatkozat",
     [Page.Kereses]: () => "/kereses",
     [Page.Rendelo]: () => "/rendelo",
+    [Page.Info]: () => "/gyakori-kerdesek",
 };
 
 const getNavUrlTemplate: { [page in Page]: () => string } = {
@@ -31,6 +33,7 @@ const getNavUrlTemplate: { [page in Page]: () => string } = {
     [Page.AdatvedelmiNyilatkozat]: getNavUrl[Page.AdatvedelmiNyilatkozat],
     [Page.Kereses]: getNavUrl[Page.Kereses],
     [Page.Rendelo]: getNavUrl[Page.Rendelo],
+    [Page.Info]: getNavUrl[Page.Info],
 };
 
 const getNavUrlQueryParams = {
@@ -64,7 +67,8 @@ const getNavUrlSimpleTitle = {
     [Page.FelhasznalasiFeltetelek]: getPageTitle("Felhasználási feltételek"),
     [Page.AdatvedelmiNyilatkozat]: getPageTitle("Adatvédelmi nyilatkozat"),
     [Page.Kereses]: getPageTitle("Keresés"),
-    [Page.Rendelo]: getPageTitle("Háziorvosoknak/rendelőknek"),
+    [Page.Rendelo]: getPageTitle("Háziorvosoknak / rendelőknek"),
+    [Page.Info]: getPageTitle("Gyakori kérdések"),
 } as const;
 
 export const NavUtils = {

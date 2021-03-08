@@ -18,6 +18,7 @@ import { StaticContent } from "./general/staticContent";
 import { getGlobalServices } from "../services/services";
 import { SearchPage } from "./searchPage/searchPage";
 import { SurgeryPage } from "./surgeryPage/surgeryPage";
+import { InfoPage } from "./infoPage/infoPage";
 
 export function MainApp() {
     const currentUser = useSelector(selectCurrentUser);
@@ -42,6 +43,12 @@ export function MainApp() {
     const renderSurgeryRoute = () => (
         <PageFrame title={NavUtils.getNavUrlSimpleTitle[Page.Rendelo]}>
             <SurgeryPage />
+        </PageFrame>
+    );
+
+    const renderInfoRoute = () => (
+        <PageFrame title={NavUtils.getNavUrlSimpleTitle[Page.Info]}>
+            <InfoPage />
         </PageFrame>
     );
 
@@ -103,6 +110,10 @@ export function MainApp() {
                                 <Route
                                     path={NavUtils.getNavUrlTemplate[Page.Rendelo]()}
                                     render={renderSurgeryRoute}
+                                />
+                                <Route
+                                    path={NavUtils.getNavUrlTemplate[Page.Info]()}
+                                    render={renderInfoRoute}
                                 />
                                 <Route render={() => <Redirect to={NavUtils.getNavUrl[Page.Kezdolap]()} />} />
                             </Switch>
