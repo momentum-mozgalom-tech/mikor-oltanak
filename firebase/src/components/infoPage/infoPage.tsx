@@ -59,13 +59,13 @@ export function InfoPage() {
                         <li>
                             Ha programozó, akkor járuljon hozzá a weboldalhoz a
                             {" "}
-                            <a href="https://github.com/momentum-mozgalom-tech/mikor-oltanak" target="_blank" rel="noreferrer">githubon</a>
+                            <a href="https://github.com/momentum-mozgalom-tech/mikor-oltanak" target="_blank" rel="noopener noreferrer">githubon</a>
                             !
                         </li>
                         <li>
                             Csatlakozzon a tenni vágyó közösségünkhöz a
                             {" "}
-                            <a href="https://jelentkezes.momentum.hu/" target="_blank" rel="noreferrer">weblapunkon</a>
+                            <a href="https://jelentkezes.momentum.hu/" target="_blank" rel="noopener noreferrer">weblapunkon</a>
                             !
                         </li>
                     </ul>
@@ -126,11 +126,11 @@ export function InfoPage() {
                     <div>
                         A weblap ikonját a
                         {" "}
-                        <a href="https://www.freepik.com" title="Freepik" target="_blank" rel="noreferrer">Freepik</a>
+                        <a href="https://www.freepik.com" title="Freepik" target="_blank" rel="noopener noreferrer">Freepik</a>
                         {" "}
                         készítette a
                         {" "}
-                        <a href="https://www.flaticon.com/" title="Flaticon" target="_blank" rel="noreferrer">www.flaticon.com</a>
+                        <a href="https://www.flaticon.com/" title="Flaticon" target="_blank" rel="noopener noreferrer">www.flaticon.com</a>
                         {" "}
                         oldalon.
                     </div>
