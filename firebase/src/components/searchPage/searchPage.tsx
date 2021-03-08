@@ -53,7 +53,7 @@ export function SearchPage() {
             <Grid item xs={12} md={6}>
                 <Typography variant="body1" paragraph>
                     Azt tapasztaltuk, hogy páciensként sokszor nem világos számunkra, hogy rajta
-                    vagyunk-e már a háziorvosunk/rendelőnk oltási listáján. Orvosként pedig az amúgyis
+                    vagyunk-e már a háziorvosunk/rendelőnk oltási listáján. Orvosként pedig az amúgy is
                     emberfeletti teher mellett sokszor az aggódó, telefonon érdeklődő páciensekkel
                     kell tölteni az időt.
                 </Typography>
