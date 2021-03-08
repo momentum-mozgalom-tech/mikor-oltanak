@@ -115,7 +115,13 @@ export function SearchPage() {
                     searchState.surgeryIds.length === 0 ? (
                         <FailureResultPaper elevation={1}>
                             <Typography variant="body1">
-                                Ön még nem szerepel oltási listán.
+                                Az ön születési dátuma nem szerepel a weblapon regisztrált
+                                háziorvos(ok)/rendelő(k) aktuális oltási listáján.
+                                {" "}
+                                <strong>
+                                    Ettől még más háziorvosok vagy az állam
+                                    oltási listáján szerepelhet.
+                                </strong>
                             </Typography>
                         </FailureResultPaper>
                     ) : (
