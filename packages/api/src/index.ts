@@ -14,8 +14,8 @@ export interface IFirestoreSurgery {
 }
 
 export interface IFirestoreSurgeryPrivate {
-    /** A list of hashes of tajszám, where tajszám is a string of 9 digits, e.g. 123456789 */
-    tajHashes: string[];
+    /** A list of birthdates, where birthdates are of the format 1990-12-31 */
+    birthdates: string[];
 }
 
 export interface IFirestoreRequestIp {
@@ -24,11 +24,11 @@ export interface IFirestoreRequestIp {
 }
 
 export interface IFunctionsSearchRequest {
-    /** Hash of tajszám, where tajszám is a string of 9 digits, e.g. 123456789 */
-    tajHash: string;
+    /** Birthdate in the format of 1990-12-31 */
+    birthdate: string;
 }
 
 export interface IFunctionsSearchResponse {
-    /** Surgeries which contain a patient with the requested tajszám */
+    /** Surgeries matching the search request */
     surgeryIds: string[];
 }

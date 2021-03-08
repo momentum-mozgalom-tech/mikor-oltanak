@@ -1,9 +1,14 @@
+import "date-fns";
 import * as React from "react";
 import DocumentTitle from "react-document-title";
 import { useSelector } from "react-redux";
 import { RouteComponentProps, useHistory } from "react-router";
 import { Redirect, Route, Switch } from "react-router-dom";
 import styled from "styled-components/macro";
+import DateFnsUtils from "@date-io/date-fns";
+import {
+    MuiPickersUtilsProvider,
+} from "@material-ui/pickers";
 import { selectCurrentUser } from "../store/selectors";
 import { NavUtils, Page } from "../utils/navUtils";
 import { ScrollToTop } from "./common/scrollToTop";
@@ -55,53 +60,55 @@ export function MainApp() {
     return (
         <DocumentTitle title={NavUtils.getNavUrlSimpleTitle[Page.Kezdolap]}>
             <ScrollToTop>
-                <AppContainer>
-                    <AppContent>
-                        <Switch>
-                            <Route
-                                exact
-                                path={NavUtils.getNavUrlTemplate[Page.Kezdolap]()}
-                                render={renderHomeRoute}
-                            />
-                            <Route
-                                exact
-                                path={NavUtils.getNavUrlTemplate[Page.Bejelentkezes]()}
-                                render={renderRouteAuth}
-                            />
-                            <Route
-                                exact
-                                path={NavUtils.getNavUrlTemplate[Page.FelhasznalasiFeltetelek]()}
-                                render={() => (
-                                    <PageFrame
-                                        title={NavUtils.getNavUrlSimpleTitle[Page.FelhasznalasiFeltetelek]}
-                                    >
-                                        <StaticContent type="terms of service" />
-                                    </PageFrame>
-                                )}
-                            />
-                            <Route
-                                exact
-                                path={NavUtils.getNavUrlTemplate[Page.AdatvedelmiNyilatkozat]()}
-                                render={() => (
-                                    <PageFrame
-                                        title={NavUtils.getNavUrlSimpleTitle[Page.AdatvedelmiNyilatkozat]}
-                                    >
-                                        <StaticContent type="privacy policy" />
-                                    </PageFrame>
-                                )}
-                            />
-                            <Route
-                                path={NavUtils.getNavUrlTemplate[Page.Kereses]()}
-                                render={renderSearchRoute}
-                            />
-                            <Route
-                                path={NavUtils.getNavUrlTemplate[Page.Rendelo]()}
-                                render={renderSurgeryRoute}
-                            />
-                            <Route render={() => <Redirect to={NavUtils.getNavUrl[Page.Kezdolap]()} />} />
-                        </Switch>
-                    </AppContent>
-                </AppContainer>
+                <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                    <AppContainer>
+                        <AppContent>
+                            <Switch>
+                                <Route
+                                    exact
+                                    path={NavUtils.getNavUrlTemplate[Page.Kezdolap]()}
+                                    render={renderHomeRoute}
+                                />
+                                <Route
+                                    exact
+                                    path={NavUtils.getNavUrlTemplate[Page.Bejelentkezes]()}
+                                    render={renderRouteAuth}
+                                />
+                                <Route
+                                    exact
+                                    path={NavUtils.getNavUrlTemplate[Page.FelhasznalasiFeltetelek]()}
+                                    render={() => (
+                                        <PageFrame
+                                            title={NavUtils.getNavUrlSimpleTitle[Page.FelhasznalasiFeltetelek]}
+                                        >
+                                            <StaticContent type="terms of service" />
+                                        </PageFrame>
+                                    )}
+                                />
+                                <Route
+                                    exact
+                                    path={NavUtils.getNavUrlTemplate[Page.AdatvedelmiNyilatkozat]()}
+                                    render={() => (
+                                        <PageFrame
+                                            title={NavUtils.getNavUrlSimpleTitle[Page.AdatvedelmiNyilatkozat]}
+                                        >
+                                            <StaticContent type="privacy policy" />
+                                        </PageFrame>
+                                    )}
+                                />
+                                <Route
+                                    path={NavUtils.getNavUrlTemplate[Page.Kereses]()}
+                                    render={renderSearchRoute}
+                                />
+                                <Route
+                                    path={NavUtils.getNavUrlTemplate[Page.Rendelo]()}
+                                    render={renderSurgeryRoute}
+                                />
+                                <Route render={() => <Redirect to={NavUtils.getNavUrl[Page.Kezdolap]()} />} />
+                            </Switch>
+                        </AppContent>
+                    </AppContainer>
+                </MuiPickersUtilsProvider>
             </ScrollToTop>
         </DocumentTitle>
     );

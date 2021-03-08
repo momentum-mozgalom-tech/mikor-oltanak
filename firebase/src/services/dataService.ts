@@ -19,29 +19,41 @@ export class DataService {
             .set(surgery);
     }
 
-    public addTajHashes = async (params: {
+    public addBirthdates = async (params: {
         surgeryId: string;
-        tajHashes: string[];
+        birthdates: string[];
     }) => {
-        const { surgeryId, tajHashes } = params;
+        const { surgeryId, birthdates } = params;
         await (this.firestore
             .collection(CollectionId.SurgeriesPrivate)
             .doc(surgeryId) as firebaseFirestore.DocumentReference<IFirestoreSurgeryPrivate>)
             .set({
-                tajHashes: firebaseFirestore.FieldValue.arrayUnion(...tajHashes) as any,
+                birthdates: firebaseFirestore.FieldValue.arrayUnion(...birthdates) as any,
             }, { merge: true });
     }
 
-    public removeTajHashes = async (params: {
+    public removeBirthdates = async (params: {
         surgeryId: string;
-        tajHashes: string[];
+        birthdates: string[];
     }) => {
-        const { surgeryId, tajHashes } = params;
+        const { surgeryId, birthdates } = params;
         await (this.firestore
             .collection(CollectionId.SurgeriesPrivate)
             .doc(surgeryId) as firebaseFirestore.DocumentReference<IFirestoreSurgeryPrivate>)
             .set({
-                tajHashes: firebaseFirestore.FieldValue.arrayRemove(...tajHashes) as any,
+                birthdates: firebaseFirestore.FieldValue.arrayRemove(...birthdates) as any,
+            }, { merge: true });
+    }
+
+    public removeAllBirthdates = async (params: {
+        surgeryId: string;
+    }) => {
+        const { surgeryId } = params;
+        await (this.firestore
+            .collection(CollectionId.SurgeriesPrivate)
+            .doc(surgeryId) as firebaseFirestore.DocumentReference<IFirestoreSurgeryPrivate>)
+            .set({
+                birthdates: [],
             }, { merge: true });
     }
 }
