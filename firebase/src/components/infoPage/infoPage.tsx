@@ -114,7 +114,7 @@ export function InfoPage() {
                     Hol kérdezhetek a weblappal kapcsolatban?
                 </Typography>
                 <Typography variant="body1" paragraph>
-                    Kérdéseit küldje az info@mikoroltanak.eu címre!
+                    Kérdéseit küldje az info@mikoroltanak.hu címre!
                 </Typography>
             </Grid>
 

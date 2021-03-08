@@ -47,7 +47,7 @@ export function SurgeryPageNotLoggedIn() {
             </Grid>
             <Grid item xs={12} md={6} container direction="column" alignItems="stretch">
                 <Typography variant="body1" paragraph>
-                    Kérdéseit küldje az info@mikoroltanak.eu címre!
+                    Kérdéseit küldje az info@mikoroltanak.hu címre!
                 </Typography>
             </Grid>
         </Grid>
