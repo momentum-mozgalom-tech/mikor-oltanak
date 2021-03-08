@@ -150,7 +150,7 @@ export function SearchPage() {
                 </Typography>
                 <Typography variant="body2" paragraph>
                     Az oldal nem tárol semmilyen személyes adatot. Kizárólag születési dátumokat
-                    tartalmaz anélkül, hogy konkrét személyhez kötődne.
+                    tartalmaz anélkül, hogy azok konkrét személyhez kötődnének.
                 </Typography>
                 <Typography variant="body2" paragraph>
                     A rendszer védelme érdekében naponta maximum 10 keresést végezhet el.
