@@ -117,6 +117,25 @@ export function InfoPage() {
                     Kérdéseit küldje az info@mikoroltanak.eu címre!
                 </Typography>
             </Grid>
+
+            <Grid item xs={12} md={6} container direction="column" alignItems="stretch">
+                <Typography variant="h6" paragraph>
+                    Attribúciók
+                </Typography>
+                <Typography variant="body1" paragraph>
+                    <div>
+                        A weblap ikonját a
+                        {" "}
+                        <a href="https://www.freepik.com" title="Freepik" target="_blank" rel="noreferrer">Freepik</a>
+                        {" "}
+                        készítette a
+                        {" "}
+                        <a href="https://www.flaticon.com/" title="Flaticon" target="_blank" rel="noreferrer">www.flaticon.com</a>
+                        {" "}
+                        oldalon.
+                    </div>
+                </Typography>
+            </Grid>
         </Grid>
     );
 }
