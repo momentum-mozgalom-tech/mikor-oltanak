@@ -66,7 +66,7 @@ export function AppHeader() {
                     </IconLink>
                     <IconLink to={NavUtils.getNavUrl[Page.Rendelo]()}>
                         <Button color="inherit" size="small">
-                            Háziorvosoknak/rendelőknek
+                            Háziorvosoknak / rendelőknek
                         </Button>
                     </IconLink>
                 </AppIcons>
@@ -150,7 +150,14 @@ const AppTitleLink = styled(Link)`
 `;
 
 const AppIcons = styled.div`
-    flex-grow: 1;
+    ${({ theme }) => `
+        flex-grow: 1;
+        ${theme.breakpoints.down("xs")} {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+    `}
 `;
 
 const IconLink = styled(Link)`

@@ -2,6 +2,7 @@ import {
     Button,
     Grid, Typography,
 } from "@material-ui/core";
+import styled from "styled-components/macro";
 import * as React from "react";
 import { NavUtils, Page } from "../../utils/navUtils";
 import { Login } from "../general/login";
@@ -10,7 +11,7 @@ export function SurgeryPageNotLoggedIn() {
     return (
         <Grid container spacing={5} direction="column" alignItems="center">
             <Grid item xs={12} md={6}>
-                <Typography variant="h2" align="center" gutterBottom>Háziorvosoknak/rendelőknek</Typography>
+                <Title variant="h2" align="center" gutterBottom>Háziorvosoknak / rendelőknek</Title>
             </Grid>
             <Grid item xs={12} md={6} container direction="column" alignItems="stretch">
                 <Typography variant="body1" paragraph>
@@ -43,3 +44,12 @@ export function SurgeryPageNotLoggedIn() {
         </Grid>
     );
 }
+
+// Styles
+const Title = styled(Typography)`
+    ${({ theme }) => `
+        ${theme.breakpoints.down("xs")} {
+            font-size: 2rem;
+        }
+    `}
+`;
