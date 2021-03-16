@@ -21,6 +21,7 @@
     "firebase-functions": "^3.13.0"
   },
   "devDependencies": {
+    "@mikoroltanak/server-utils": "workspace:^0.0.0",
     "@zeit/webpack-asset-relocator-loader": "^0.8.0",
     "copy-webpack-plugin": "^4.6.0",
     "firebase-functions-test": "^0.1.7",
