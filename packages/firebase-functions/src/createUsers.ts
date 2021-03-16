@@ -13,10 +13,12 @@ async function execute() {
     const password = "testtest";
     try {
         // Create new user
+        console.log(`Creating user with email ${email}...`);
         const newUser = await admin.auth().createUser({
             email,
             password,
         });
+        console.log(`User created with email ${email}!`);
         const { uid } = newUser;
         // Wait until user gets auto-disabled
         while (true) {
@@ -30,7 +32,9 @@ async function execute() {
         }
         console.log("User is disabled!");
         // Reenable user
+        console.log("Reenabling user...");
         await admin.auth().updateUser(uid, { disabled: false });
+        console.log("User is reenabled!");
         // Send welcome email
         const bodyText = `Kedves Jelentkező!
 
@@ -59,14 +63,16 @@ Köszönjük a munkáját és minden jót kívánunk:
         <p>Köszönjük a munkáját és minden jót kívánunk:<br />
         "Mikor oltanak?" weblap</p>
 `
+        console.log(`Sending email to ${email}...`);
         await sendEmail({
             toAddress: email,
             subject: "Sikeres regisztráció a mikoroltanak.hu weboldalra",
             bodyText,
             bodyHtml,
         });
+        console.log(`Email sent to ${email}!`);
     } catch (e) {
-        console.error(`Failed to create user with email "${email}"`, e);
+        console.error(`Failed to finish user creation for email ${email}`, e);
     }
 }
 
