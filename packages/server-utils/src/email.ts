@@ -8,6 +8,8 @@ const SENDGRID_API_KEY_SECRET_ID = "sendgrid-api-key";
  */
 export async function sendEmail(options: {
     toAddress: string;
+    replyToAddress?: string;
+    ccAddress?: string;
     subject: string;
     bodyText: string;
     bodyHtml: string;
@@ -17,10 +19,12 @@ export async function sendEmail(options: {
         console.error(new Error(`Failed to fetch SendGrid API key from ${SENDGRID_API_KEY_SECRET_ID}`));
         return;
     }
-    const { toAddress, subject, bodyText, bodyHtml } = options;
+    const { toAddress, ccAddress, replyToAddress, subject, bodyText, bodyHtml } = options;
     SendGridMail.setApiKey(sendGridApiKey);
     const message: SendGridMail.MailDataRequired = {
         to: toAddress,
+        cc: ccAddress,
+        replyTo: replyToAddress,
         from: {
             email: "no-reply@app.mikoroltanak.hu",
             name: "Mikor oltanak?",

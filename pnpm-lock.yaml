@@ -140,6 +140,7 @@ importers:
       '@zeit/webpack-asset-relocator-loader': 0.8.0
       copy-webpack-plugin: 4.6.0
       firebase-functions-test: 0.1.7_f32532c1af7014176ec61069de082fc9
+      generate-password: 1.6.0
       source-map-loader: 0.2.4
       ts-loader: 7.0.5_typescript@3.9.7
       typescript: 3.9.7
@@ -156,6 +157,7 @@ importers:
       firebase-admin: ^8.13.0
       firebase-functions: ^3.13.0
       firebase-functions-test: ^0.1.7
+      generate-password: ^1.6.0
       source-map-loader: ^0.2.4
       ts-loader: ^7.0.5
       typescript: ^3.9.7
@@ -8379,6 +8381,10 @@ packages:
     optional: true
     resolution:
       integrity: sha512-sf896I5CC/1AxeaGfSFg3vKMjUq/r+A3bscmVzZm10CElyRanN0XwPu/MxeIO4LSP+9uF6yKzXvNsaTsMXUG6Q==
+  /generate-password/1.6.0:
+    dev: true
+    resolution:
+      integrity: sha512-YUJTQkApkLT/fru0QdYWP0lVZdPKhF5kXCP24sgI4gR/vFMJFopCj5t1+9FAKIYcML/nxzx2PMkA1ymO1FC+tQ==
   /gensync/1.0.0-beta.2:
     dev: true
     engines:

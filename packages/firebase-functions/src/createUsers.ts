@@ -3,14 +3,27 @@ import {
     sendEmail,
 } from "@mikoroltanak/server-utils";
 var serviceAccount = require("../../../secret/mikor-oltanak-firebase-adminsdk-1bpqk-d95de128e7.json");
+import * as fs from 'fs';
+import * as generatePassword from "generate-password";
+import { CollectionId, IFirestoreSurgery } from '@mikoroltanak/api';
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount)
 });
 
-async function execute() {
-    const email = "test@test.com";
-    const password = "testtest";
+interface INewUserRequest {
+    email: string;
+    password: string;
+    name: string;
+    description: string;
+}
+
+async function createNewUser({
+    email,
+    password,
+    name,
+    description,
+}: INewUserRequest) {
     try {
         // Create new user
         console.log(`Creating user with email ${email}...`);
@@ -35,7 +48,15 @@ async function execute() {
         console.log("Reenabling user...");
         await admin.auth().updateUser(uid, { disabled: false });
         console.log("User is reenabled!");
+        // Set surgery information
+        console.log("Setting surgery information...");
+        await (admin.firestore().collection(CollectionId.Surgeries).doc(uid) as FirebaseFirestore.DocumentReference<IFirestoreSurgery>).update({
+            name,
+            description
+        });
+        console.log("Surgery information set!");
         // Send welcome email
+        const infoEmail = "info@mikoroltanak.hu";
         const bodyText = `Kedves Jelentkező!
 
 A felhasználóneve: ${email}
@@ -43,7 +64,7 @@ A jelszava: ${password}
 
 A https://mikoroltanak.hu/rendelo lapon tud belépni.
 
-Ha bármiben tudunk segíteni, állunk rendelkezésére, kérjük írjon az info@mikoroltanak.hu címre!
+Ha bármiben tudunk segíteni, állunk rendelkezésére, kérjük írjon az ${infoEmail} címre!
 
 Köszönjük a munkáját és minden jót kívánunk:
 "Mikor oltanak?" weblap
@@ -58,7 +79,7 @@ Köszönjük a munkáját és minden jót kívánunk:
 
         <p>A https://mikoroltanak.hu/rendelo lapon tud belépni.</p>
 
-        <p>Ha bármiben tudunk segíteni, állunk rendelkezésére, kérjük írjon az info@mikoroltanak.hu címre!</p>
+        <p>Ha bármiben tudunk segíteni, állunk rendelkezésére, kérjük írjon az ${infoEmail} címre!</p>
 
         <p>Köszönjük a munkáját és minden jót kívánunk:<br />
         "Mikor oltanak?" weblap</p>
@@ -66,6 +87,8 @@ Köszönjük a munkáját és minden jót kívánunk:
         console.log(`Sending email to ${email}...`);
         await sendEmail({
             toAddress: email,
+            replyToAddress: infoEmail,
+            ccAddress: infoEmail,
             subject: "Sikeres regisztráció a mikoroltanak.hu weboldalra",
             bodyText,
             bodyHtml,
@@ -74,6 +97,31 @@ Köszönjük a munkáját és minden jót kívánunk:
     } catch (e) {
         console.error(`Failed to finish user creation for email ${email}`, e);
     }
+}
+
+async function execute() {
+    // Read new user file
+    const filename = "../../secret/new-users.txt"
+    const fileContent = fs.readFileSync(filename, 'utf8');
+    const newUserRows = fileContent.split("\n");
+    for (const newUserRow of newUserRows) {
+        const newUserFields = newUserRow.split("\t");
+        if (newUserFields.length < 3) {
+            continue;
+        }
+        const [ email, name, description ] = newUserFields;
+        var password = generatePassword.generate({
+            length: 20,
+            numbers: true,
+        });
+        await createNewUser({
+            email,
+            password,
+            name,
+            description,
+        });
+    }
+    console.log("FINISHED!");
 }
 
 execute();
