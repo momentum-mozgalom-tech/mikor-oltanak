@@ -25,6 +25,16 @@ async function createNewUser({
     description,
 }: INewUserRequest) {
     try {
+        // Delete user if exists
+        console.log(`Does this user exist already? ${email}...`);
+        try {
+            const { uid: existingUid } = (await admin.auth().getUserByEmail(email));
+            console.log("User exists already, deleting it...");
+            await admin.auth().deleteUser(existingUid);
+            console.log("User deleted!");
+        } catch (e) {
+            console.log("User doesn't yet exist, continuing!")
+        }
         // Create new user
         console.log(`Creating user with email ${email}...`);
         const newUser = await admin.auth().createUser({
