@@ -1,5 +1,5 @@
 import {
-    CircularProgress, Divider, List, ListItem, ListItemText,
+    CircularProgress, Divider, List, ListItem, ListItemText, TextField,
 } from "@material-ui/core";
 import * as React from "react";
 import { useSelector } from "react-redux";
@@ -12,11 +12,19 @@ export interface IProps {
 }
 
 export function SurgeryList({ surgeryIds }: IProps) {
+    const [filter, setFilter] = React.useState("");
+    const sanitisedFilter = filter.trim().toLowerCase();
     const surgeries = useSelector(selectSurgeries);
     const surgeryList = Object.entries(surgeries)
         .filter(([surgeryId]) => surgeryIds === undefined || surgeryIds.indexOf(surgeryId) !== -1)
         .filter(([, { name }]) => name.trim() !== "") // filter surgeries with no names set yet
+        .filter(([, { name, description }]) => name.toLowerCase().includes(sanitisedFilter)
+            || description.toLowerCase().includes(sanitisedFilter))
         .sort(([, { name: nameA }], [, { name: nameB }]) => nameA.localeCompare(nameB));
+
+    const handleFilterChange = React.useCallback((event) => {
+        setFilter(event.target.value);
+    }, [setFilter]);
 
     const renderSurgery = React.useCallback((surgeryId: string, surgery: IFirestoreSurgery, index: number) => [
         index !== 0 ? <Divider key={`divider-${surgeryId}`} variant="fullWidth" /> : null,
@@ -33,6 +41,16 @@ export function SurgeryList({ surgeryIds }: IProps) {
 
     return (
         <List>
+            <ListItem key="search">
+                <TextField
+                    label="Keresés a háziorvosok között"
+                    type="search"
+                    variant="standard"
+                    fullWidth
+                    value={filter}
+                    onChange={handleFilterChange}
+                />
+            </ListItem>
             {surgeryList.map(([surgeryId, surgery], index) => renderSurgery(surgeryId, surgery, index))}
         </List>
     );
