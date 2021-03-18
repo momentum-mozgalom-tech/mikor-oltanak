@@ -1,14 +1,15 @@
-import * as admin from 'firebase-admin';
+import * as admin from "firebase-admin";
 import {
     sendEmail,
 } from "@mikoroltanak/server-utils";
-var serviceAccount = require("../../../secret/mikor-oltanak-firebase-adminsdk-1bpqk-d95de128e7.json");
-import * as fs from 'fs';
+import * as fs from "fs";
 import * as generatePassword from "generate-password";
-import { CollectionId, IFirestoreSurgery } from '@mikoroltanak/api';
+import { CollectionId, IFirestoreSurgery } from "@mikoroltanak/api";
+
+const serviceAccount = require("../../../secret/mikor-oltanak-firebase-adminsdk-1bpqk-d95de128e7.json");
 
 admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount)
+    credential: admin.credential.cert(serviceAccount),
 });
 
 interface INewUserRequest {
@@ -33,7 +34,7 @@ async function createNewUser({
             await admin.auth().deleteUser(existingUid);
             console.log("User deleted!");
         } catch (e) {
-            console.log("User doesn't yet exist, continuing!")
+            console.log("User doesn't yet exist, continuing!");
         }
         // Create new user
         console.log(`Creating user with email ${email}...`);
@@ -44,6 +45,7 @@ async function createNewUser({
         console.log(`User created with email ${email}!`);
         const { uid } = newUser;
         // Wait until user gets auto-disabled
+        // eslint-disable-next-line no-constant-condition
         while (true) {
             console.log("Waiting a bit...");
             await new Promise(resolve => setTimeout(resolve, 1000));
@@ -62,7 +64,7 @@ async function createNewUser({
         console.log("Setting surgery information...");
         await (admin.firestore().collection(CollectionId.Surgeries).doc(uid) as FirebaseFirestore.DocumentReference<IFirestoreSurgery>).update({
             name,
-            description
+            description,
         });
         console.log("Surgery information set!");
         // Send welcome email
@@ -78,7 +80,7 @@ Ha bármiben tudunk segíteni, állunk rendelkezésére, kérjük írjon az ${in
 
 Köszönjük a munkáját és minden jót kívánunk:
 "Mikor oltanak?" weblap
-`
+`;
         const bodyHtml = `
         <p>Kedves Jelentkező!</p>
 
@@ -93,7 +95,7 @@ Köszönjük a munkáját és minden jót kívánunk:
 
         <p>Köszönjük a munkáját és minden jót kívánunk:<br />
         "Mikor oltanak?" weblap</p>
-`
+`;
         console.log(`Sending email to ${email}...`);
         await sendEmail({
             toAddress: email,
@@ -111,8 +113,8 @@ Köszönjük a munkáját és minden jót kívánunk:
 
 async function execute() {
     // Read new user file
-    const filename = "../../secret/new-users.txt"
-    const fileContent = fs.readFileSync(filename, 'utf8');
+    const filename = "../../secret/new-users.txt";
+    const fileContent = fs.readFileSync(filename, "utf8");
     const newUserRows = fileContent.split("\n");
     for (const newUserRow of newUserRows) {
         const newUserFields = newUserRow.split("\t");
@@ -120,7 +122,7 @@ async function execute() {
             continue;
         }
         const [ email, name, description ] = newUserFields;
-        var password = generatePassword.generate({
+        const password = generatePassword.generate({
             length: 20,
             numbers: true,
         });
