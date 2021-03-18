@@ -76,6 +76,22 @@ export function AppHeader() {
                     </IconLink>
                 </AppIcons>
 
+                <ShareButtonContainer
+                    className="fb-share-button"
+                    data-href="https://mikoroltanak.hu"
+                    data-layout="button_count"
+                    data-size="large"
+                >
+                    <a
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fmikoroltanak.hu%2F&amp;src=sdkpreparse"
+                        className="fb-xfbml-parse-ignore"
+                    >
+                        Share
+                    </a>
+                </ShareButtonContainer>
+
                 {isLoggedIn ? (
                     <Button
                         onClick={handleSignOutClick}
@@ -169,4 +185,8 @@ const IconLink = styled(Link)`
     margin-left: 5px;
     margin-right: 5px;
     color: inherit;
+`;
+
+const ShareButtonContainer = styled.div`
+    margin-right: 1rem;
 `;
