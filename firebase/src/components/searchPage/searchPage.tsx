@@ -75,26 +75,29 @@ export function SearchPage() {
                 </Typography>
             </Grid>
             <Grid item xs={12} md={6} container direction="column" alignItems="stretch">
-                <KeyboardDatePicker
-                    variant="inline"
-                    format="yyyy-MM-dd"
-                    margin="normal"
-                    label="Születési dátum"
-                    value={birthdate}
-                    onChange={setBirthdate}
-                />
-            </Grid>
-            <Grid item xs={12} md={6} container direction="column" alignItems="stretch">
-                <Button
-                    disabled={birthdate == null || isSearching}
-                    variant="contained"
-                    color="primary"
-                    onClick={handleSearchClick}
-                    fullWidth
-                    size="large"
-                >
-                    Keresés
-                </Button>
+                <SearchPaper elevation={1}>
+                    <Grid item xs={12} md={6} container direction="column" alignItems="stretch">
+                        <Typography variant="h5" align="center">Keresés</Typography>
+                        <KeyboardDatePicker
+                            variant="inline"
+                            format="yyyy-MM-dd"
+                            margin="normal"
+                            label="Születési dátum"
+                            value={birthdate}
+                            onChange={setBirthdate}
+                        />
+                        <Button
+                            disabled={birthdate == null || isSearching}
+                            variant="contained"
+                            color="primary"
+                            onClick={handleSearchClick}
+                            fullWidth
+                            size="large"
+                        >
+                            Keresés
+                        </Button>
+                    </Grid>
+                </SearchPaper>
             </Grid>
             <Grid item xs={12} md={6} container direction="column" alignItems="stretch">
                 {searchState?.type === "pending" && (
@@ -179,4 +182,9 @@ const FailureResultPaper = styled(ResultPaper)`
 
 const CentredDiv = styled.div`
     text-align: center;
+`;
+
+const SearchPaper = styled(Paper)`
+    margin: 0rem;
+    padding: 2rem;
 `;
