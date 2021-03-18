@@ -9,5 +9,8 @@ export function sanitiseBirthdate(value: string) {
 }
 
 export function dateToString(date: Date) {
-    return date.toISOString().substring(0, 10);
+    const year = date.getFullYear();
+    const month = date.getMonth() + 1;
+    const day = date.getDate();
+    return `${year}-${month}-${day}`;
 }
