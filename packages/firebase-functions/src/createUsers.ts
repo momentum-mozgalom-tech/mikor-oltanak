@@ -61,6 +61,17 @@ async function createNewUser({
         await admin.auth().updateUser(uid, { disabled: false });
         console.log("User is reenabled!");
         // Set surgery information
+        // Wait until surgery doc is created
+        // eslint-disable-next-line no-constant-condition
+        while (true) {
+            console.log("Waiting a bit...");
+            await new Promise(resolve => setTimeout(resolve, 1000));
+            console.log("Checking if surgery doc is created already...");
+            const surgeryDoc = await admin.firestore().collection(CollectionId.Surgeries).doc(uid).get();
+            if (surgeryDoc.exists) {
+                break;
+            }
+        }
         console.log("Setting surgery information...");
         await (admin.firestore().collection(CollectionId.Surgeries).doc(uid) as FirebaseFirestore.DocumentReference<IFirestoreSurgery>).update({
             name,
