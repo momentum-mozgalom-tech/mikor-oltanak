@@ -58,6 +58,10 @@ export const onUserCreate = functions
     .user()
     .onCreate(async (user) => {
         const surgeryId = user.uid;
+        // Disable new users to prevent unauthorised registration
+        await admin.auth().updateUser(surgeryId, {
+            disabled: true,
+        });
         const surgeryDoc = admin.firestore().collection(CollectionId.Surgeries).doc(surgeryId) as FirebaseFirestore.DocumentReference<IFirestoreSurgery>;
         await surgeryDoc.set({
             name: "",
