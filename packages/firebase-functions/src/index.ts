@@ -20,8 +20,9 @@ export const findPatient = functions
     .region("europe-west1")
     .https
     .onCall(async (data: IFunctionsSearchRequest, context): Promise<IFunctionsSearchResponse> => {
+        const isLoggedIn = context.auth?.uid !== undefined;
         const isRequestLimitOk = await checkAndIncrementSearchRequestCount(context.rawRequest.ip);
-        if (!isRequestLimitOk) {
+        if (!isLoggedIn && !isRequestLimitOk) {
             throw new functions.https.HttpsError("resource-exhausted", "Ma már nem futtathat le több keresést.");
         }
         const { birthdate } = data;
