@@ -11,8 +11,9 @@ import {
     Toolbar,
     Typography,
 } from "@material-ui/core";
-import { amber, green } from "@material-ui/core/colors";
+import { amber, green, purple } from "@material-ui/core/colors";
 import { Close } from "@material-ui/icons";
+import { ThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 import { getGlobalServices } from "../../services/services";
 import {
     selectCurrentUser,
@@ -21,6 +22,12 @@ import {
 } from "../../store/selectors";
 import { usePrevious } from "../../utils/hooks";
 import { NavUtils, Page } from "../../utils/navUtils";
+
+const momentumTheme = createMuiTheme({
+    palette: {
+        primary: purple,
+    },
+});
 
 export function AppHeader() {
     const [isSignedOutMessageOpen, setSignedOutMessageOpen] = React.useState(false);
@@ -79,6 +86,21 @@ export function AppHeader() {
                         </Button>
                     </IconLink>
                 </AppIcons>
+
+                <ThemeProvider theme={momentumTheme}>
+                    <MomentumButtonContainer>
+                        <Button
+                            href="https://jelentkezes.momentum.hu"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            variant="contained"
+                            size="small"
+                            color="primary"
+                        >
+                            Segítsen Ön is
+                        </Button>
+                    </MomentumButtonContainer>
+                </ThemeProvider>
 
                 <ShareButtonContainer
                     className="fb-share-button"
@@ -192,5 +214,9 @@ const IconLink = styled(Link)`
 `;
 
 const ShareButtonContainer = styled.div`
+    margin-right: 1rem;
+`;
+
+const MomentumButtonContainer = styled.div`
     margin-right: 1rem;
 `;

@@ -30,8 +30,10 @@ export function SurgeryPageNotLoggedIn() {
                     hogy mely születési dátumok szerepelnek az oltási listájukon.
                 </Typography>
                 <Typography variant="body1" paragraph>
-                    <strong>Ha még nem regisztrált, akkor azt az alábbi gombra kattintva teheti meg.
-                    Igyekszünk minél hamarabb válaszolni!</strong>
+                    <strong>
+                        Ha még nem regisztrált, akkor azt az alábbi gombra kattintva teheti meg.
+                        Igyekszünk minél hamarabb válaszolni!
+                    </strong>
                 </Typography>
                 <Button color="primary" variant="contained" href="https://docs.google.com/forms/d/e/1FAIpQLSeL0p2n5BH5xMGdPTLSlhFG1Q3uF4ewiKCUGUzV1-80FDu41A/viewform?usp=sf_link" target="_blank" rel="noopener noreferrer">
                     Regisztrálok háziorvosként/rendelőként
