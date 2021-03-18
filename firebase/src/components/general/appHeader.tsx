@@ -32,6 +32,10 @@ export function AppHeader() {
     const hasPendingWritesPrevious = usePrevious(hasPendingWrites, false);
 
     React.useEffect(() => {
+        ((window as any).FB).XFBML.parse();
+    });
+
+    React.useEffect(() => {
         if (hasPendingWritesPrevious && !hasPendingWrites) {
             setSaveSuccessfulMessageOpen(true);
         }
