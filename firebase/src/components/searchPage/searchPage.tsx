@@ -103,52 +103,50 @@ export function SearchPage() {
                             Keresés
                         </Button>
                     </Grid>
-                </SearchPaper>
-            </Grid>
-            <Grid item xs={12} md={6} container direction="column" alignItems="stretch">
-                {searchState?.type === "pending" && (
-                    <CentredDiv>
-                        <CircularProgress />
-                    </CentredDiv>
-                )}
-                {searchState?.type === "failed" && (
-                    <FailureResultPaper elevation={1}>
-                        <Typography variant="body1">
-                            <strong>Hiba a kereséskor!</strong>
-                            {" "}
-                            {searchState.error}
-                        </Typography>
-                    </FailureResultPaper>
-                )}
-                {searchState?.type === "success" && (
-                    searchState.surgeryIds.length === 0 ? (
+                    {searchState?.type === "pending" && (
+                        <CentredDiv>
+                            <CircularProgress />
+                        </CentredDiv>
+                    )}
+                    {searchState?.type === "failed" && (
                         <FailureResultPaper elevation={1}>
                             <Typography variant="body1">
-                                Az ön születési dátuma nem szerepel a weblapon regisztrált
-                                háziorvos(ok)/rendelő(k) aktuális oltási listáján.
+                                <strong>Hiba a kereséskor!</strong>
                                 {" "}
-                                <strong>
-                                    Ettől még más háziorvosok vagy az állam
-                                    oltási listáján szerepelhet.
-                                </strong>
+                                {searchState.error}
                             </Typography>
                         </FailureResultPaper>
-                    ) : (
-                        <SuccessResultPaper elevation={1}>
-                            <Typography variant="body1">
-                                Az ön születési dátuma az alábbi háziorvos(ok)/rendelő(k) oltási listáján szerepel.
-                            </Typography>
-                            <Typography variant="body2">
-                                <strong>Figyelem!</strong>
-                                {" "}
-                                Nem biztos, hogy ön szerepel eze(ke)n az oltási listá(ko)n!
-                                Lehetséges, hogy más szerepel a listán, ugyanezzel a születési dátummal.
-                                Tájékozódjon a háziorvosánál/rendelőjénél!
-                            </Typography>
-                            <SurgeryList surgeryIds={searchState.surgeryIds} />
-                        </SuccessResultPaper>
-                    )
-                )}
+                    )}
+                    {searchState?.type === "success" && (
+                        searchState.surgeryIds.length === 0 ? (
+                            <FailureResultPaper elevation={1}>
+                                <Typography variant="body1">
+                                    Az ön születési dátuma nem szerepel a weblapon regisztrált
+                                    háziorvos(ok)/rendelő(k) aktuális oltási listáján.
+                                    {" "}
+                                    <strong>
+                                        Ettől még más háziorvosok vagy az állam
+                                        oltási listáján szerepelhet.
+                                    </strong>
+                                </Typography>
+                            </FailureResultPaper>
+                        ) : (
+                            <SuccessResultPaper elevation={1}>
+                                <Typography variant="body1">
+                                    Az ön születési dátuma az alábbi háziorvos(ok)/rendelő(k) oltási listáján szerepel.
+                                </Typography>
+                                <Typography variant="body2">
+                                    <strong>Figyelem!</strong>
+                                    {" "}
+                                    Nem biztos, hogy ön szerepel eze(ke)n az oltási listá(ko)n!
+                                    Lehetséges, hogy más szerepel a listán, ugyanezzel a születési dátummal.
+                                    Tájékozódjon a háziorvosánál/rendelőjénél!
+                                </Typography>
+                                <SurgeryList surgeryIds={searchState.surgeryIds} />
+                            </SuccessResultPaper>
+                        )
+                    )}
+                </SearchPaper>
             </Grid>
             <Grid item xs={12} md={6} container direction="column" alignItems="stretch">
                 <Typography variant="body2" paragraph>
@@ -174,7 +172,7 @@ export function SearchPage() {
 }
 
 const ResultPaper = styled(Paper)`
-    margin: 1rem;
+    margin-top: 2rem;
     padding: 1rem;
 `;
 
@@ -191,6 +189,5 @@ const CentredDiv = styled.div`
 `;
 
 const SearchPaper = styled(Paper)`
-    margin: 0rem;
     padding: 2rem;
 `;
