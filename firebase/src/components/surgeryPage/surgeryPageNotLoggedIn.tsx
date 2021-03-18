@@ -15,6 +15,7 @@ export function SurgeryPageNotLoggedIn() {
             </Grid>
             <Grid item xs={12} md={6}>
                 <iframe
+                    title="Videó háziorvosoknak"
                     width="560"
                     height="315"
                     src="https://www.youtube.com/embed/qQlEbPEWD4o"
@@ -29,22 +30,20 @@ export function SurgeryPageNotLoggedIn() {
                     hogy mely születési dátumok szerepelnek az oltási listájukon.
                 </Typography>
                 <Typography variant="body1" paragraph>
+                    <strong>Ha még nem regisztrált, akkor azt az alábbi gombra kattintva teheti meg.
+                    Igyekszünk minél hamarabb válaszolni!</strong>
+                </Typography>
+                <Button color="primary" variant="contained" href="https://docs.google.com/forms/d/e/1FAIpQLSeL0p2n5BH5xMGdPTLSlhFG1Q3uF4ewiKCUGUzV1-80FDu41A/viewform?usp=sf_link" target="_blank" rel="noopener noreferrer">
+                    Regisztrálok háziorvosként/rendelőként
+                </Button>
+            </Grid>
+            <Grid item xs={12} md={6} container direction="column" alignItems="stretch">
+                <Typography variant="body1" paragraph>
                     Ha már regisztrált ezen a honlapon, lépjen be alább.
                 </Typography>
             </Grid>
             <Grid item xs={12} md={6} container direction="column" alignItems="stretch">
                 <Login redirectUrl={NavUtils.getNavUrl[Page.Rendelo]()} />
-            </Grid>
-            <Grid item xs={12} md={6} container direction="column" alignItems="stretch">
-                <Typography variant="body1" paragraph>
-                    Ha még nem regisztrált, akkor azt az alábbi gombra kattintva teheti meg.
-                    Igyekszünk minél hamarabb válaszolni!
-                </Typography>
-            </Grid>
-            <Grid item xs={12} md={6} container direction="column" alignItems="stretch">
-                <Button color="primary" variant="contained" href="https://docs.google.com/forms/d/e/1FAIpQLSeL0p2n5BH5xMGdPTLSlhFG1Q3uF4ewiKCUGUzV1-80FDu41A/viewform?usp=sf_link" target="_blank" rel="noopener noreferrer">
-                    Regisztrálok háziorvosként/rendelőként
-                </Button>
             </Grid>
             <Grid item xs={12} md={6} container direction="column" alignItems="stretch">
                 <Typography variant="body1" paragraph>
