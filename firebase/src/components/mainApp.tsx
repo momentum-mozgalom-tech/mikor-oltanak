@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import { RouteComponentProps, useHistory } from "react-router";
 import { Redirect, Route, Switch } from "react-router-dom";
 import styled from "styled-components/macro";
+import { hu } from "date-fns/locale";
 import DateFnsUtils from "@date-io/date-fns";
 import {
     MuiPickersUtilsProvider,
@@ -67,7 +68,7 @@ export function MainApp() {
     return (
         <DocumentTitle title={NavUtils.getNavUrlSimpleTitle[Page.Kezdolap]}>
             <ScrollToTop>
-                <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                <MuiPickersUtilsProvider utils={DateFnsUtils} locale={hu}>
                     <AppContainer>
                         <AppContent>
                             <Switch>
