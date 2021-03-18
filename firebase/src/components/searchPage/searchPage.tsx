@@ -3,10 +3,12 @@ import {
     Button, CircularProgress, Grid, Paper, Typography,
 } from "@material-ui/core";
 import * as React from "react";
+import { Link } from "react-router-dom";
 import { KeyboardDatePicker } from "@material-ui/pickers";
 import { getGlobalServices } from "../../services/services";
 import { dateToString } from "../../utils/birthdateUtils";
 import { SurgeryList } from "./surgeryList";
+import { NavUtils, Page } from "../../utils/navUtils";
 
 type ISearchState = {
     type: "pending";
@@ -67,11 +69,15 @@ export function SearchPage() {
                     ha háziorvosa/rendelője ezen a honlapon már regisztrált.
                 </Typography>
                 <Typography variant="body1" paragraph>
-                    <strong>Háziorvosként/rendelőként</strong>
+                    <Link to={NavUtils.getNavUrl[Page.Rendelo]()}><strong>Háziorvosként/rendelőként</strong></Link>
                     {" "}
                     pedig feltöltheti az oltásra várók születési dátumait,
                     hogy a páciensek itt ellenőrizhessék telefonálás helyett,
                     hogy szerepelnek-e az aktuális oltási listán.
+                    {" "}
+                    <Link to={NavUtils.getNavUrl[Page.Rendelo]()}>
+                        További információ háziorvosoknak/rendelőknek &gt;&gt;&gt;
+                    </Link>
                 </Typography>
             </Grid>
             <Grid item xs={12} md={6} container direction="column" alignItems="stretch">
