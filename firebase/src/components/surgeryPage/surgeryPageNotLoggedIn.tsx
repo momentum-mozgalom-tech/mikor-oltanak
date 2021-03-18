@@ -13,6 +13,16 @@ export function SurgeryPageNotLoggedIn() {
             <Grid item xs={12} md={6}>
                 <Title variant="h2" align="center" gutterBottom>Háziorvosoknak / rendelőknek</Title>
             </Grid>
+            <Grid item xs={12} md={6}>
+                <iframe
+                    width="560"
+                    height="315"
+                    src="https://www.youtube.com/embed/qQlEbPEWD4o"
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                />
+            </Grid>
             <Grid item xs={12} md={6} container direction="column" alignItems="stretch">
                 <Typography variant="body1" paragraph>
                     Háziorvosok/rendelők ezen a lapon állíthatják be,
