@@ -82,7 +82,7 @@ export function SearchPage() {
             </Grid>
             <Grid item xs={12} md={6} container direction="column" alignItems="stretch">
                 <SearchPaper elevation={1}>
-                    <Grid item xs={12} md={6} container direction="column" alignItems="stretch">
+                    <Grid item xs={12} container direction="column" alignItems="stretch">
                         <Typography variant="h5" align="center">Keresés</Typography>
                         <KeyboardDatePicker
                             variant="inline"
