@@ -39,7 +39,11 @@ export function AppHeader() {
     const hasPendingWritesPrevious = usePrevious(hasPendingWrites, false);
 
     React.useEffect(() => {
-        ((window as any).FB).XFBML.parse();
+        const fb = ((window as any).FB);
+        if (fb == null) {
+            return;
+        }
+        fb.XFBML.parse();
     });
 
     React.useEffect(() => {
