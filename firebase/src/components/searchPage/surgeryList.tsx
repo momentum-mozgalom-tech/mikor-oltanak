@@ -18,9 +18,10 @@ export function SurgeryList({ surgeryIds }: IProps) {
     const surgeryList = Object.entries(surgeries)
         .filter(([surgeryId]) => surgeryIds === undefined || surgeryIds.indexOf(surgeryId) !== -1)
         .filter(([, { name }]) => name.trim() !== "") // filter surgeries with no names set yet
-        .filter(([, { name, description }]) => name.toLowerCase().includes(sanitisedFilter)
-            || description.toLowerCase().includes(sanitisedFilter))
         .sort(([, { name: nameA }], [, { name: nameB }]) => nameA.localeCompare(nameB));
+    const filteredSurgeryList = surgeryList
+        .filter(([, { name, description }]) => name.toLowerCase().includes(sanitisedFilter)
+            || description.toLowerCase().includes(sanitisedFilter));
 
     const handleFilterChange = React.useCallback((event) => {
         setFilter(event.target.value);
@@ -51,7 +52,8 @@ export function SurgeryList({ surgeryIds }: IProps) {
                     onChange={handleFilterChange}
                 />
             </ListItem>
-            {surgeryList.map(([surgeryId, surgery], index) => renderSurgery(surgeryId, surgery, index))}
+            {filteredSurgeryList.length === 0 && "Nincs találat"}
+            {filteredSurgeryList.map(([surgeryId, surgery], index) => renderSurgery(surgeryId, surgery, index))}
         </List>
     );
 }
