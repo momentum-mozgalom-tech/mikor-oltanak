@@ -66,7 +66,7 @@ export function AppHeader() {
 
     return (
         <MainAppBar position="static" elevation={0}>
-            <Toolbar>
+            <AppToolBar>
                 <AppTitle variant="h6">
                     <AppTitleLink to={NavUtils.getNavUrl[Page.Kezdolap]()}>
                         Mikor oltanak?
@@ -182,7 +182,7 @@ export function AppHeader() {
                         style={{ backgroundColor: green[700] }}
                     />
                 </Snackbar>
-            </Toolbar>
+            </AppToolBar>
         </MainAppBar>
     );
 }
@@ -192,8 +192,26 @@ const MainAppBar = styled(AppBar)`
     padding: ${({ theme }) => theme.spacing(0, 5)};
 `;
 
+const AppToolBar = styled(Toolbar)`
+    ${({ theme }) => `
+        ${theme.breakpoints.down("xs")} {
+            flex-wrap: wrap;
+            flex: 1 0 50%;
+            padding: 10px 0;
+        }
+    `})}
+`;
+
 const AppTitle = styled(Typography)`
     margin-right: ${({ theme }) => theme.spacing(10)};
+    ${({ theme }) =>`
+        ${theme.breakpoints.down("xs")} {
+            margin-right: 0;
+            flex-basis: 100%;
+            text-align: center;
+            font-size: 2rem;
+        }
+    `}
 `;
 
 const AppTitleLink = styled(Link)`
@@ -207,6 +225,8 @@ const AppIcons = styled.div`
             display: flex;
             flex-direction: column;
             align-items: center;
+            flex-basis: 100%;
+            margin-bottom: 15px;
         }
     `}
 `;
@@ -219,8 +239,21 @@ const IconLink = styled(Link)`
 
 const ShareButtonContainer = styled.div`
     margin-right: 1rem;
+
+    ${({ theme }) =>`
+        ${theme.breakpoints.down("xs")} {
+            margin-right: 0;
+            margin-left: auto;
+        }
+    `}
 `;
 
 const MomentumButtonContainer = styled.div`
     margin-right: 1rem;
+
+    ${({ theme }) =>`
+        ${theme.breakpoints.down("xs")} {
+            margin-right: 0;
+        }
+    `}
 `;
