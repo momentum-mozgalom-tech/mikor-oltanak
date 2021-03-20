@@ -11,6 +11,10 @@ export enum CollectionId {
 export interface IFirestoreSurgery {
     name: string;
     description: string;
+    phone?: string;
+    /** Possibly different from the user's registration email because this is public */
+    email?: string;
+    location?: string;
 }
 
 export interface IFirestoreSurgeryPrivate {
