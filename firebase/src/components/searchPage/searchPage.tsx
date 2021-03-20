@@ -162,6 +162,12 @@ export function SearchPage() {
                 <Typography variant="body2" paragraph>
                     A rendszer védelme érdekében naponta maximum 10 keresést végezhet el.
                 </Typography>
+                <Typography variant="body2" paragraph>
+                    Adatkezelési tájékoztatónkat
+                    {" "}
+                    <a href="/assets/mikoroltanak_adatkezelesi_20210319.pdf" target="_blank" rel="noopener noreferrer">itt olvashatja el</a>
+                    .
+                </Typography>
             </Grid>
             <Grid item xs={12} md={6} container direction="column" alignItems="stretch">
                 <Typography variant="h5" align="center">Az oldalon az alábbi háziorvosok/rendelők regisztráltak</Typography>

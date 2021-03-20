@@ -107,6 +107,12 @@ export function InfoPage() {
                     programozónak. Harmadrészt a keresések számát fejenként napi 10-ben limitáltuk,
                     így még a születési dátumok nagyobb mennyiségű exportja sem kivitelezhető.
                 </Typography>
+                <Typography variant="body1" paragraph>
+                    Adatkezelési tájékoztatónkat
+                    {" "}
+                    <a href="/assets/mikoroltanak_adatkezelesi_20210319.pdf" target="_blank" rel="noopener noreferrer">itt olvashatja el</a>
+                    .
+                </Typography>
             </Grid>
 
             <Grid item xs={12} md={6} container direction="column" alignItems="stretch">
