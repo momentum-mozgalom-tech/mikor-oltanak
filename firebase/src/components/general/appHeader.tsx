@@ -204,7 +204,7 @@ const AppToolBar = styled(Toolbar)`
 
 const AppTitle = styled(Typography)`
     margin-right: ${({ theme }) => theme.spacing(10)};
-    ${({ theme }) =>`
+    ${({ theme }) => `
         ${theme.breakpoints.down("xs")} {
             margin-right: 0;
             flex-basis: 100%;
@@ -240,7 +240,7 @@ const IconLink = styled(Link)`
 const ShareButtonContainer = styled.div`
     margin-right: 1rem;
 
-    ${({ theme }) =>`
+    ${({ theme }) => `
         ${theme.breakpoints.down("xs")} {
             margin-right: 0;
             margin-left: auto;
@@ -251,7 +251,7 @@ const ShareButtonContainer = styled.div`
 const MomentumButtonContainer = styled.div`
     margin-right: 1rem;
 
-    ${({ theme }) =>`
+    ${({ theme }) => `
         ${theme.breakpoints.down("xs")} {
             margin-right: 0;
         }
