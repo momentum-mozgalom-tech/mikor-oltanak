@@ -16,7 +16,7 @@ export class FirebaseAuthUiService {
         signInSuccessUrl: NavUtils.getNavUrl[Page.Kezdolap](),
         signInOptions: [auth.EmailAuthProvider.PROVIDER_ID],
         // tosUrl: "/felhasznalasi-feltetelek",
-        // privacyPolicyUrl: "/adatvedelmi-nyilatkozat",
+        privacyPolicyUrl: "/assets/mikoroltanak_adatkezelesi_20210319.pdf",
         callbacks: {
             signInSuccessWithAuthResult: (authResult: any) => {
                 this.setUser(authResult.user);
