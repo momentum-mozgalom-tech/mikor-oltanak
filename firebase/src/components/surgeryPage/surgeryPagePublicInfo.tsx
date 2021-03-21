@@ -104,7 +104,7 @@ export function SurgeryPagePublicInfo({ surgeryId }: { surgeryId: string }) {
                 <TextField
                     label="Telefonszám"
                     variant="outlined"
-                    helperText={"Itt megadhatja a háziorvos telefonszámát pl.: +3612345678"}
+                    helperText={"Itt megadhatja a háziorvos/rendelő publikus telefonszámát"}
                     value={surgeryPhoneDraft}
                     onChange={handlePhoneChange}
                 />
