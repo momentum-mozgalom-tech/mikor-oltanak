@@ -83,7 +83,7 @@ export function SurgeryPagePublicInfo({ surgeryId }: { surgeryId: string }) {
             </Grid>
             <Grid item xs={12} md={6} container direction="column" alignItems="stretch">
                 <TextField
-                    label="Rendelő címe"
+                    label="Rendelő helye"
                     variant="outlined"
                     error={isFieldValueEmpty(surgeryLocationDraft)}
                     helperText={isFieldValueEmpty(surgeryLocationDraft) ? "A cím nem lehet üres" : "Itt megadhatja a háziorvosi rendelő címét nevét"}
