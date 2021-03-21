@@ -95,7 +95,7 @@ export function SurgeryPagePublicInfo({ surgeryId }: { surgeryId: string }) {
                 <TextField
                     label="E-mail-cím"
                     variant="outlined"
-                    helperText={"Itt megadhatja a háziorvos emailcímét"}
+                    helperText={"Itt megadhatja a háziorvos/rendelő publikus e-mail-címét"}
                     value={surgeryEmailDraft}
                     onChange={handleEmailChange}
                 />
