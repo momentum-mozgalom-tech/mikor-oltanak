@@ -1,7 +1,7 @@
 import { IFirestoreSurgery } from "@mikoroltanak/api";
 import React from "react";
 
-export const surgeryValidator = (surgery: IFirestoreSurgery | undefined ,validatorObj: IFirestoreSurgery): boolean => {
+export const isSurgeryModified = (surgeryBefore: IFirestoreSurgery | undefined, surgeryAfter: IFirestoreSurgery): boolean => {
     if(!surgery) {
         return true;
     }
