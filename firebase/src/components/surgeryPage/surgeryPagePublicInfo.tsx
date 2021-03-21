@@ -86,7 +86,7 @@ export function SurgeryPagePublicInfo({ surgeryId }: { surgeryId: string }) {
                     label="Rendelő helye"
                     variant="outlined"
                     error={isFieldValueEmpty(surgeryLocationDraft)}
-                    helperText={isFieldValueEmpty(surgeryLocationDraft) ? "A cím nem lehet üres" : "Itt megadhatja a háziorvosi rendelő címét nevét"}
+                    helperText={isFieldValueEmpty(surgeryLocationDraft) ? "A hely nem lehet üres" : "Itt megadhatja a háziorvosi rendelő városát, kerületét, címét"}
                     value={surgeryLocationDraft}
                     onChange={handleLocationChange}
                 />
