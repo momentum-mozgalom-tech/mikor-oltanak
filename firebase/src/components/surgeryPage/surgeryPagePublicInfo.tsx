@@ -93,7 +93,7 @@ export function SurgeryPagePublicInfo({ surgeryId }: { surgeryId: string }) {
             </Grid>
             <Grid item xs={12} md={6} container direction="column" alignItems="stretch">
                 <TextField
-                    label="E-mail cím"
+                    label="E-mail-cím"
                     variant="outlined"
                     helperText={"Itt megadhatja a háziorvos emailcímét"}
                     value={surgeryEmailDraft}
