@@ -122,7 +122,7 @@ export function SurgeryPagePublicInfo({ surgeryId }: { surgeryId: string }) {
             </Grid>
             <Grid item xs={12} md={6} container direction="column" alignItems="stretch">
                 <Button
-                    disabled={!isSurgeryModified || isFieldValueEmpty(surgeryNameDraft)}
+                    disabled={!isSurgeryModified || isFieldValueEmpty(surgeryNameDraft) || isFieldValueEmpty(surgeryLocationDraft)}
                     variant="contained"
                     color="primary"
                     onClick={handleSaveClick}
