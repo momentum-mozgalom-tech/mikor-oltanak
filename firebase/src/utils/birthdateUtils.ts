@@ -10,7 +10,14 @@ export function sanitiseBirthdate(value: string) {
 
 export function dateToString(date: Date) {
     const year = date.getFullYear();
-    const month = date.getMonth() + 1;
-    const day = date.getDate();
+    const month = formatToTwoDigits(date.getMonth() + 1);
+    const day = formatToTwoDigits(date.getDate());
     return `${year}-${month}-${day}`;
+}
+
+function formatToTwoDigits(value: number) {
+    return value.toLocaleString("hu-HU", {
+        minimumIntegerDigits: 2,
+        useGrouping: false,
+    });
 }
