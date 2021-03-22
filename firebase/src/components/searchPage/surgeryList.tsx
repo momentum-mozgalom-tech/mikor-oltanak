@@ -28,14 +28,43 @@ export function SurgeryList({ surgeryIds, showFilter }: IProps) {
         setFilter(event.target.value);
     }, [setFilter]);
 
-    const renderSurgery = React.useCallback((surgeryId: string, surgery: IFirestoreSurgery, index: number) => [
-        index !== 0 ? <Divider key={`divider-${surgeryId}`} variant="fullWidth" /> : null,
-        (
-            <ListItem key={`surgery-${surgeryId}`}>
-                <ListItemText primary={surgery.name} secondary={surgery.description} />
-            </ListItem>
-        ),
-    ], []);
+    const renderSurgery = React.useCallback((surgeryId: string, surgery: IFirestoreSurgery, index: number) => {
+        const {
+            name, description, email, phone, location,
+        } = surgery;
+        const secondary = [
+            email && (
+                <div>
+                    <strong>E-mail-cím:</strong>
+                    {" "}
+                    {email}
+                </div>
+            ),
+            phone && (
+                <div>
+                    <strong>Telefonszám:</strong>
+                    {" "}
+                    {phone}
+                </div>
+            ),
+            location && (
+                <div>
+                    <strong>Hely:</strong>
+                    {" "}
+                    {location}
+                </div>
+            ),
+            description && (<div>{description}</div>),
+        ];
+        return [
+            index !== 0 ? <Divider key={`divider-${surgeryId}`} variant="fullWidth" /> : null,
+            (
+                <ListItem key={`surgery-${surgeryId}`}>
+                    <ListItemText primary={name} secondary={secondary} />
+                </ListItem>
+            ),
+        ];
+    }, []);
 
     if (surgeryList.length === 0) {
         return <CircularProgress />;
