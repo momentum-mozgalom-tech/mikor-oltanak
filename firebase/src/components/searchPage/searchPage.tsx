@@ -142,7 +142,7 @@ export function SearchPage() {
                                     Lehetséges, hogy más szerepel a listán, ugyanezzel a születési dátummal.
                                     Tájékozódjon a háziorvosánál/rendelőjénél!
                                 </Typography>
-                                <SurgeryList surgeryIds={searchState.surgeryIds} />
+                                <SurgeryList surgeryIds={searchState.surgeryIds} showFilter={false} />
                             </SuccessResultPaper>
                         )
                     )}
@@ -171,7 +171,7 @@ export function SearchPage() {
             </Grid>
             <Grid item xs={12} md={6} container direction="column" alignItems="stretch">
                 <Typography variant="h5" align="center">Az oldalon az alábbi háziorvosok/rendelők regisztráltak</Typography>
-                <SurgeryList />
+                <SurgeryList showFilter />
             </Grid>
         </Grid>
     );

@@ -7,11 +7,12 @@ import { IFirestoreSurgery } from "@mikoroltanak/api";
 import { selectSurgeries } from "../../store/selectors";
 
 export interface IProps {
+    showFilter: boolean;
     /** If specified, show these surgeries. Otherwise show all surgeries. */
     surgeryIds?: string[];
 }
 
-export function SurgeryList({ surgeryIds }: IProps) {
+export function SurgeryList({ surgeryIds, showFilter }: IProps) {
     const [filter, setFilter] = React.useState("");
     const sanitisedFilter = filter.trim().toLowerCase();
     const surgeries = useSelector(selectSurgeries);
@@ -42,16 +43,18 @@ export function SurgeryList({ surgeryIds }: IProps) {
 
     return (
         <List>
-            <ListItem key="search">
-                <TextField
-                    label="Keresés a háziorvosok között"
-                    type="search"
-                    variant="standard"
-                    fullWidth
-                    value={filter}
-                    onChange={handleFilterChange}
-                />
-            </ListItem>
+            {showFilter && (
+                <ListItem key="search">
+                    <TextField
+                        label="Keresés a háziorvosok között"
+                        type="search"
+                        variant="standard"
+                        fullWidth
+                        value={filter}
+                        onChange={handleFilterChange}
+                    />
+                </ListItem>
+            )}
             {filteredSurgeryList.length === 0 && "Nincs találat"}
             {filteredSurgeryList.map(([surgeryId, surgery], index) => renderSurgery(surgeryId, surgery, index))}
         </List>
