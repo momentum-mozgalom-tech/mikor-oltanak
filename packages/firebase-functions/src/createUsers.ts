@@ -13,23 +13,29 @@ admin.initializeApp({
 });
 
 interface INewUserRequest {
-    email: string;
+    userEmail: string;
     password: string;
     name: string;
     description: string;
+    location: string;
+    surgeryEmail: string;
+    phone: string;
 }
 
 async function createNewUser({
-    email,
+    userEmail,
     password,
     name,
     description,
+    location,
+    surgeryEmail,
+    phone,
 }: INewUserRequest) {
     try {
         // Delete user if exists
-        console.log(`Does this user exist already? ${email}...`);
+        console.log(`Does this user exist already? ${userEmail}...`);
         try {
-            const { uid: existingUid } = (await admin.auth().getUserByEmail(email));
+            const { uid: existingUid } = (await admin.auth().getUserByEmail(userEmail));
             console.log("User exists already, deleting it...");
             await admin.auth().deleteUser(existingUid);
             console.log("User deleted!");
@@ -37,12 +43,12 @@ async function createNewUser({
             console.log("User doesn't yet exist, continuing!");
         }
         // Create new user
-        console.log(`Creating user with email ${email}...`);
+        console.log(`Creating user with email ${userEmail}...`);
         const newUser = await admin.auth().createUser({
-            email,
+            email: userEmail,
             password,
         });
-        console.log(`User created with email ${email}!`);
+        console.log(`User created with email ${userEmail}!`);
         const { uid } = newUser;
         // Wait until user gets auto-disabled
         // eslint-disable-next-line no-constant-condition
@@ -76,13 +82,16 @@ async function createNewUser({
         await (admin.firestore().collection(CollectionId.Surgeries).doc(uid) as FirebaseFirestore.DocumentReference<IFirestoreSurgery>).update({
             name,
             description,
+            location,
+            phone,
+            email: surgeryEmail,
         });
         console.log("Surgery information set!");
         // Send welcome email
         const infoEmail = "info@mikoroltanak.hu";
         const bodyText = `Kedves Jelentkező!
 
-A felhasználóneve: ${email}
+A felhasználóneve: ${userEmail}
 A jelszava: ${password}
 
 A https://mikoroltanak.hu/rendelo lapon tud belépni.
@@ -96,7 +105,7 @@ Köszönjük a munkáját és minden jót kívánunk:
         <p>Kedves Jelentkező!</p>
 
         <p>
-            A felhasználóneve: ${email}<br />
+            A felhasználóneve: ${userEmail}<br />
             A jelszava: ${password}
         </p>
 
@@ -107,18 +116,18 @@ Köszönjük a munkáját és minden jót kívánunk:
         <p>Köszönjük a munkáját és minden jót kívánunk:<br />
         "Mikor oltanak?" weblap</p>
 `;
-        console.log(`Sending email to ${email}...`);
+        console.log(`Sending email to ${userEmail}...`);
         await sendEmail({
-            toAddress: email,
+            toAddress: userEmail,
             replyToAddress: infoEmail,
             ccAddress: infoEmail,
             subject: "Sikeres regisztráció a mikoroltanak.hu weboldalra",
             bodyText,
             bodyHtml,
         });
-        console.log(`Email sent to ${email}!`);
+        console.log(`Email sent to ${userEmail}!`);
     } catch (e) {
-        console.error(`Failed to finish user creation for email ${email}`, e);
+        console.error(`Failed to finish user creation for email ${userEmail}`, e);
     }
 }
 
@@ -129,19 +138,22 @@ async function execute() {
     const newUserRows = fileContent.split("\n");
     for (const newUserRow of newUserRows) {
         const newUserFields = newUserRow.split("\t");
-        if (newUserFields.length < 3) {
+        if (newUserFields.length < 6) {
             continue;
         }
-        const [ email, name, description ] = newUserFields;
+        const [ userEmail, name, description, location, surgeryEmail, phone ] = newUserFields;
         const password = generatePassword.generate({
             length: 20,
             numbers: true,
         });
         await createNewUser({
-            email,
+            userEmail,
             password,
             name,
             description,
+            location,
+            surgeryEmail,
+            phone,
         });
     }
     console.log("FINISHED!");
