@@ -21,8 +21,13 @@ export function SurgeryList({ surgeryIds, showFilter }: IProps) {
         .filter(([, { name }]) => name.trim() !== "") // filter surgeries with no names set yet
         .sort(([, { name: nameA }], [, { name: nameB }]) => nameA.localeCompare(nameB));
     const filteredSurgeryList = surgeryList
-        .filter(([, { name, description }]) => name.toLowerCase().includes(sanitisedFilter)
-            || description.toLowerCase().includes(sanitisedFilter));
+        .filter(([, {
+            name, description, email, location, phone,
+        }]) => name.toLowerCase().includes(sanitisedFilter)
+            || description.toLowerCase().includes(sanitisedFilter)
+            || (email?.toLowerCase().includes(sanitisedFilter) ?? false)
+            || (location?.toLowerCase().includes(sanitisedFilter) ?? false)
+            || (phone?.toLowerCase().includes(sanitisedFilter) ?? false));
 
     const handleFilterChange = React.useCallback((event) => {
         setFilter(event.target.value);
