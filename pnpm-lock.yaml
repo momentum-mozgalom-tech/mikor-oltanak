@@ -12,6 +12,8 @@ importers:
       eslint-plugin-react: 7.21.5_eslint@7.16.0
       eslint-plugin-react-hooks: 4.2.0_eslint@7.16.0
       firebase-tools: 8.20.0
+      husky: 5.2.0
+      is-ci: 3.0.0
       typescript: 3.9.7
     specifiers:
       '@typescript-eslint/eslint-plugin': ^3.10.1
@@ -25,6 +27,8 @@ importers:
       eslint-plugin-react: ^7.21.5
       eslint-plugin-react-hooks: ^4.2.0
       firebase-tools: ^8.20.0
+      husky: ^5.2.0
+      is-ci: ^3.0.0
       typescript: ^3.9.7
   firebase:
     dependencies:
@@ -5027,6 +5031,10 @@ packages:
     dev: true
     resolution:
       integrity: sha512-5tK7EtrZ0N+OLFMthtqOj4fI2Jeb88C4CAZPu25LDVUgXJ0A3Js4PMGqrn0JU1W0Mh1/Z8wZzYPxqUrXeBboCQ==
+  /ci-info/3.1.1:
+    dev: true
+    resolution:
+      integrity: sha512-kdRWLBIJwdsYJWYJFtAFFYxybguqeF91qpZaggjG5Nf8QKdizFG2hjqvaTXbxFIcYbSaD74KpAXv6BSm17DHEQ==
   /cipher-base/1.0.4:
     dependencies:
       inherits: 2.0.4
@@ -9166,6 +9174,13 @@ packages:
       node: '>= 6'
     resolution:
       integrity: sha512-EkYm5BcKUGiduxzSt3Eppko+PiNWNEpa4ySk9vTC6wDsQJW9rHSa+UhGNJoRYp7bz6Ht1eaRIa6QaJqO5rCFbA==
+  /husky/5.2.0:
+    dev: true
+    engines:
+      node: '>= 10'
+    hasBin: true
+    resolution:
+      integrity: sha512-AM8T/auHXRBxlrfPVLKP6jt49GCM2Zz47m8G3FOMsLmTv8Dj/fKVWE0Rh2d4Qrvmy131xEsdQnb3OXRib67PGg==
   /hyphenate-style-name/1.0.4:
     dev: false
     resolution:
@@ -9539,6 +9554,13 @@ packages:
     hasBin: true
     resolution:
       integrity: sha512-YfJT7rkpQB0updsdHLGWrvhBJfcfzNNawYDNIyQXJz0IViGf75O8EBPKSdvw2rF+LGCsX4FZ8tcr3b19LcZq4w==
+  /is-ci/3.0.0:
+    dependencies:
+      ci-info: 3.1.1
+    dev: true
+    hasBin: true
+    resolution:
+      integrity: sha512-kDXyttuLeslKAHYL/K28F2YkM3x5jvFPEw3yXbRptXydjD9rpLEz+C5K5iutY9ZiUu6AP41JdvRQwF4Iqs4ZCQ==
   /is-color-stop/1.1.0:
     dependencies:
       css-color-names: 0.0.4
