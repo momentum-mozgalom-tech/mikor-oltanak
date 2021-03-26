@@ -1,6 +1,6 @@
 import * as admin from "firebase-admin";
 
-const serviceAccount = require("../../../secret/mikor-oltanak-firebase-adminsdk-1bpqk-d95de128e7.json");
+const serviceAccount = require("../../../secrets/mikor-oltanak-firebase-adminsdk-1bpqk-3f0bba69b8.json");
 
 admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),

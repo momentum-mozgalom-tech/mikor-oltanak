@@ -6,7 +6,7 @@ import * as fs from "fs";
 import * as generatePassword from "generate-password";
 import { CollectionId, IFirestoreSurgery } from "@mikoroltanak/api";
 
-const serviceAccount = require("../../../secret/mikor-oltanak-firebase-adminsdk-1bpqk-d95de128e7.json");
+const serviceAccount = require("../../../secrets/mikor-oltanak-firebase-adminsdk-1bpqk-3f0bba69b8.json");
 
 admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
@@ -133,7 +133,7 @@ Köszönjük a munkáját és minden jót kívánunk:
 
 async function execute() {
     // Read new user file
-    const filename = "../../secret/new-users.txt";
+    const filename = "../../secrets/new-users.txt";
     const fileContent = fs.readFileSync(filename, "utf8");
     const newUserRows = fileContent.split("\n");
     for (const newUserRow of newUserRows) {
